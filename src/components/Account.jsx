@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import loginSignupImage from "../assets/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
-import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 import image from "../assets/account.png"
 
 
 const Account=()=> {
-    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [data, setData] = useState({

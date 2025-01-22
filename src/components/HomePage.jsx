@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import gold from "../assets/gold.jpg";
 import "../App.css";
-import image from "../assets/first.jpg"
 import image1 from '../assets/gold.png';
 import image2 from '../assets/earings.webp';
 import image3 from '../assets/ring.avif';
 import image4 from '../assets/necklace.jpg';
-import { FcIdea } from "react-icons/fc";
 import ProductCard from "./ProductCard";
 import trend1 from '../assets/trend1.jpeg';
 import trend2 from '../assets/trend2.webp';
