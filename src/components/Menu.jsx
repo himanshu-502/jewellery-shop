@@ -1,5 +1,6 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
+import "../styles/magnifier.css";
 import gold1 from "../assets/goldring.webp";
 import gold2 from "../assets/goldearings.webp";
 import gold3 from "../assets/goldnecklace.jpg";
@@ -248,28 +249,94 @@ const Menu = () => {
         setRating(0);
       }
     };
-  
+
+    const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+      const lens = document.querySelector(".magnifier-lens");
+      const productImg = document.querySelector(".product-img img");
+      const magnifiedImg = document.querySelector(".magnified-img");
+
+      const moveLens = (e) => {
+        const lensWidth = lens.offsetWidth;
+        const lensHeight = lens.offsetHeight;
+        const productImgRect = productImg.getBoundingClientRect();
+
+        let x = e.clientX - productImgRect.left - lensWidth / 2;
+        let y = e.clientY - productImgRect.top - lensHeight / 2;
+
+        const maxX = productImgRect.width - lensWidth;
+        const maxY = productImgRect.height - lensHeight;
+
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
+
+        setLensPosition({ x, y });
+
+        const cx = magnifiedImg.offsetWidth / lensWidth;
+        const cy = magnifiedImg.offsetHeight / lensHeight;
+
+        magnifiedImg.style.background = `
+          url('${productImg.src}')
+          -${x * cx}px -${y * cy}px
+          / ${productImgRect.width * cx}px ${productImgRect.height * cy}px
+          no-repeat`;
+      };
+
+      const handleMouseEnter = () => setIsActive(true);
+      const handleMouseLeave = () => setIsActive(false);
+
+      lens.addEventListener("mousemove", moveLens);
+      productImg.addEventListener("mousemove", moveLens);
+      lens.addEventListener("mouseenter", handleMouseEnter);
+      productImg.addEventListener("mouseenter", handleMouseEnter);
+      lens.addEventListener("mouseleave", handleMouseLeave);
+      productImg.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        lens.removeEventListener("mousemove", moveLens);
+        productImg.removeEventListener("mousemove", moveLens);
+        lens.removeEventListener("mouseenter", handleMouseEnter);
+        productImg.removeEventListener("mouseenter", handleMouseEnter);
+        lens.removeEventListener("mouseleave", handleMouseLeave);
+        productImg.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }, []);
+
+
+
     return (
       <div className="p-4 mt-6">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row bg-white shadow-lg">
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 product-img">
             <img
               src={productDisplay.image}
               alt={productDisplay.name}
-              className="w-full h-auto object-cover hover:scale-150"
+              className="w-full h-auto object-cover"
             />
+            <div
+              className={`magnifier-lens ${isActive ? "active" : ""}`}
+              style={{
+                top: `${lensPosition.y}px`,
+                left: `${lensPosition.x}px`,
+              }}
+            ></div>
           </div>
-          <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+          <div className="w-full md:w-1/2 p-6 flex flex-col justify-center product-img">
             <h3 className="text-2xl font-bold text-gray-800">{productDisplay.name}</h3>
             <p className="text-xl text-gray-600 mt-2">₹{productDisplay.price}</p>
             <div className="mt-4 flex gap-4">
-              <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-                Buy Now
-              </button>
-              <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+              <button onClick={()=>{ addToCart() }} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
                 Add to Cart
               </button>
+              <button onClick={()=>{ addToCart() }} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                Buy Now
+              </button>
             </div>
+            <div
+              className={`magnified-img ${isActive ? "active" : ""}`}
+            ></div>
           </div>
         </div>
   
