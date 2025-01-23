@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import {useCartWishlist} from "./CartWishlistContext.jsx";
 import "../styles/magnifier.css";
 import {products} from './productsInfo.jsx';
+import Recommend from "./Recommend.jsx";
 
 import necklace from "../assets/necklace.svg"
 import delivery from "../assets/delivery.svg"
@@ -83,6 +84,7 @@ const Menu = () => {
 
     const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
     const [isActive, setIsActive] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(productDisplay.image[0]); 
 
     useEffect(() => {
       const lens = document.querySelector(".magnifier-lens");
@@ -143,10 +145,25 @@ const Menu = () => {
     console.log(isInWishlist);
     return (
       <div className="p-4 mt-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg gap-6">
+
+          <div className="w-full md:w-1/6 flex flex-col gap-3 p-4">
+            {productDisplay.image.map((imgSrc, index) => (
+              <img
+               key={index}
+               src={imgSrc}
+               alt={`Thumbnail ${index + 1}`}
+               className={`cursor-pointer w-full h-auto object-cover rounded border-2 ${
+                 selectedImage === imgSrc ? "border-yellow-500" : "border-gray-300"
+               }`}
+               onClick={() => setSelectedImage(imgSrc)}
+              />
+            ))}
+          </div>
+          <div className="flex flex-col md:flex-row gap-6 w-full">
           <div className="w-full md:w-1/2 product-img">
             <img
-              src={productDisplay.image}
+              src={selectedImage}
               alt={productDisplay.name}
               className="w-full h-auto object-cover"
             />
@@ -184,9 +201,7 @@ const Menu = () => {
       <hr className="border-t border-gray-300  mt-5" />
 
       <div className="mt-4 font-serif">
-        <p>For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold.
-
-With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style</p>
+        <p>{productDisplay.desc}</p>
         <div className="font-serif font-semibold p-3 mx-auto text-end text-red-500 text-1xl">By EagleView </div>
       </div>
             <div className="mt-4 flex gap-4">
@@ -201,6 +216,7 @@ With this bracelet, win over minds with your professional expertise and win over
               className={`magnified-img ${isActive ? "active" : ""}`}
             ></div>
           </div>
+        </div>
         </div>
 
         {/*purity*/}
@@ -223,6 +239,17 @@ With this bracelet, win over minds with your professional expertise and win over
       </div>
     </div>
   
+
+
+      {/* Product Recommendation */}
+
+    <div className="bg-white py-8 mt-8">
+      <div className="flex justify-center gap-8 ">
+        <Recommend productDisplay={productDisplay} />
+      </div>
+    </div>
+  
+
         {/* Rating Section */}
         <div className="mt-6">
           <h3 className="text-lg font-semibold mb-2">Rate this product</h3>

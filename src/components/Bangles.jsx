@@ -59,7 +59,7 @@ const bangles = () => {
             >
               <Link to={`/menu/${product.id}`}>
                 <img
-                  src={product.image}
+                  src={product.image[0]}
                   alt={product.name}
                   className="w-full h-48 object-cover rounded mb-4"
                 />

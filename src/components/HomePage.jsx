@@ -66,25 +66,25 @@ const blogs = [
 const products = [
     {
       id:33,
-      image: trend1,
+      image: [trend1, trend2],
       title: 'Adya Classic Gold Bracelet',
       price: 64240,
     },
     {
       id:34,
-      image: trend2,
+      image: [trend2, trend3],
       title: 'Shubhi Pleasing  Gold Earrings',
       price: 21635,
     },
     {
       id:35,
-      image: trend3,
+      image: [trend3, trend1],
       title: 'Brezza Red & White Diamond Earrings',
       price: 47663,
     },
     {
       id:36,
-      image: trend4,
+      image: [trend4, trend4],
       title: 'Sia Elegant Diamond Necklace',
       price: 99817,
     },

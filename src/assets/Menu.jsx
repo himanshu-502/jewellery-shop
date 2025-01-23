@@ -301,7 +301,7 @@ const Menu = () => {
     {/* Product Image Section */}
     <div className="w-full md:w-1/2 h-100 overflow-hidden">
       <img
-        src={productDisplay.image}
+        src={productDisplay.image[0]}
         alt={productDisplay.name}
         className="w-full h-full object-cover hover:scale-150"
       />
