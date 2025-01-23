@@ -11,17 +11,33 @@ import "../index.css"
 import { IoSearch } from "react-icons/io5";
 import mob from "../assets/mobiledrop.webp"
 import { useNavigate } from "react-router-dom";
+
+const options=[
+    "gold","silver","diamond","wedding","ring","bangles","earings","necklace"
+]
+
 const Header = () => {
+  let phrase=""
   const navigate=useNavigate()
   const[search,setsearch]=useState("")
   const handlechange=(e)=>{
      setsearch(e.target.value)
   }
   const handleSearch = () => {
-    if (search.trim() !== "" ) {
+    for(let i=0;i<options.length;i++)
+    {
+      if(options[i].includes(search.trim().toLowerCase()))
+      {
+        phrase=options[i]
+      }
+    }
+    if (search.trim().toLowerCase() !== ""  && phrase.trim().toLowerCase() === search.trim().toLowerCase()) {
       navigate(`/${search.trim()}`); 
       setsearch("")
-    } else {
+    }
+    else if(phrase.trim().toLowerCase() !== ""){  navigate(`/${phrase.trim()}`); 
+    setsearch("")} 
+    else {
       alert("Please enter a valid search term"); 
       setsearch("")
     }
