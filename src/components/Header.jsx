@@ -10,8 +10,22 @@ import { ImCancelCircle } from "react-icons/im";
 import "../index.css"
 import { IoSearch } from "react-icons/io5";
 import mob from "../assets/mobiledrop.webp"
+import { useNavigate } from "react-router-dom";
 const Header = () => {
-    
+  const navigate=useNavigate()
+  const[search,setsearch]=useState("")
+  const handlechange=(e)=>{
+     setsearch(e.target.value)
+  }
+  const handleSearch = () => {
+    if (search.trim() !== "" ) {
+      navigate(`/${search.trim()}`); 
+      setsearch("")
+    } else {
+      alert("Please enter a valid search term"); 
+      setsearch("")
+    }
+  };
   const[toggle,settoggle]=useState(false)
   const sidemenu=()=>{
     console.log("HII")
@@ -21,7 +35,7 @@ const Header = () => {
   
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
-    sidemenu(); // Call your sidemenu function here
+    sidemenu(); 
   };
 
   return (<>
@@ -46,8 +60,11 @@ const Header = () => {
               type="text"
               placeholder="Search..."
               className="px-2 py-1 focus:outline-none "
+             value={search}
+              onChange={handlechange}
+
             />
-            <button className="bg-blue-500 text-white px-4 rounded-2xl  hover:bg-red-600">
+            <button onClick={handleSearch} className="bg-blue-500 text-white px-4 rounded-2xl  hover:bg-red-600">
               Search
             </button>
           </div>
@@ -120,8 +137,10 @@ const Header = () => {
               type="text"
               placeholder="Search..."
               className=" px-2 py-1 focus:outline-none"
+              value={search}
+              onChange={handlechange}
             />
-            <button className="  hover:bg-red-600">
+            <button onClick={handleSearch} className="  hover:bg-red-600">
               <IoSearch/>
             </button>
           </div>

@@ -4,6 +4,52 @@ import {useCartWishlist} from "./CartWishlistContext.jsx";
 import "../styles/magnifier.css";
 import {products} from './productsInfo.jsx';
 
+import necklace from "../assets/necklace.svg"
+import delivery from "../assets/delivery.svg"
+import time from "../assets/time.svg"
+import certified from "../assets/certified.svg"
+
+import maintenance from "../assets/maintenance.webp"
+import transparency from "../assets/transparency.webp"
+import purity from "../assets/purity.webp"
+
+
+const features = [
+  {
+    icon: necklace, 
+    title: "Contemporary Designs",
+  },
+  {
+    icon: certified, 
+    title: "Bis Hallmark",
+  },
+  {
+    icon: time, 
+    title: "Easy Lifetime Exchange",
+  },
+  {
+    icon:delivery,
+    title: "Insured Delivery",
+  },
+
+];
+
+const assurances = [
+ 
+  {
+    icon: purity, 
+    text: "The Purity Guarantee",
+  },
+  {
+    icon: transparency,
+    text: "Complete Transparency and Trust",
+  },
+  {
+    icon: maintenance, 
+    text: "Lifetime Maintenance",
+  },
+];
+
 const Menu = () => {
     const { filter } = useParams();
     const [rating, setRating] = useState(0);
@@ -97,7 +143,7 @@ const Menu = () => {
     console.log(isInWishlist);
     return (
       <div className="p-4 mt-6">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row bg-white shadow-lg">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg">
           <div className="w-full md:w-1/2 product-img">
             <img
               src={productDisplay.image}
@@ -115,6 +161,34 @@ const Menu = () => {
           <div className="w-full md:w-1/2 p-6 flex flex-col justify-center product-img">
             <h3 className="text-2xl font-bold text-gray-800">{productDisplay.name}</h3>
             <p className="text-xl text-gray-600 mt-2">₹{productDisplay.price}</p>
+            <hr className="border-t border-gray-300  mt-5" />
+
+            <div className="flex justify-center items-center gap-6 mt-5">
+              
+        {features.map((feature, index) => (
+          <div key={index} className="text-center">
+            {/* Icon */}
+            <img
+              src={feature.icon}
+              alt={feature.title}
+              className="h-7 mx-auto mb-4"
+            />
+            {/* Title */}
+            <p className="text-sm font-medium text-gray-700">
+              {feature.title}
+            </p>
+          </div>
+        ))}
+        
+      </div>
+      <hr className="border-t border-gray-300  mt-5" />
+
+      <div className="mt-4 font-serif">
+        <p>For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold.
+
+With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style</p>
+        <div className="font-serif font-semibold p-3 mx-auto text-end text-red-500 text-1xl">By EagleView </div>
+      </div>
             <div className="mt-4 flex gap-4">
               <button onClick={()=>{ addToCart(productDisplay) }} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
                 Add to Cart
@@ -128,6 +202,26 @@ const Menu = () => {
             ></div>
           </div>
         </div>
+
+        {/*purity*/}
+  <div className="bg-white py-8 mt-8">
+      <div className="text-center mb-10">
+        <h2 className="text-4xl font-serif font-bold text-brown-800">The EagleView JewelTechs  Assurance</h2>
+        <p className="text-gray-600 mx-auto">Crafted by Experts, Cherished by You.</p>
+      </div>
+      <div className="flex flex-wrap justify-center gap-8 ">
+        {assurances.map((item, index) => (
+          <div key={index} className="flex flex-col items-center text-center ">
+            <img
+              src={item.icon}
+              alt={item.text}
+              className="w-100 h-20 object-contain mb-4"
+            />
+            <p className="text-sm text-gray-700 font-semibold">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   
         {/* Rating Section */}
         <div className="mt-6">
