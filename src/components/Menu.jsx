@@ -141,25 +141,27 @@ const Menu = () => {
     const { addToCart, addToWishlist, wishlist } = useCartWishlist();
 
     const isInWishlist = wishlist.length>0 && wishlist.some((item) => item.id === productDisplay.id);
-    console.log(productDisplay);
-    console.log(isInWishlist);
+    // console.log(productDisplay);
+    // console.log(isInWishlist);
     return (
       <div className="p-4 mt-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg gap-6">
 
-          <div className="w-full md:w-1/6 flex flex-col gap-3 p-4">
-            {productDisplay.image.map((imgSrc, index) => (
-              <img
-               key={index}
-               src={imgSrc}
-               alt={`Thumbnail ${index + 1}`}
-               className={`cursor-pointer w-full h-auto object-cover rounded border-2 ${
-                 selectedImage === imgSrc ? "border-yellow-500" : "border-gray-300"
-               }`}
-               onClick={() => setSelectedImage(imgSrc)}
-              />
-            ))}
-          </div>
+          {productDisplay.image.length>1 && (
+            <div className="w-full md:w-1/6 flex flex-col gap-3 p-4">
+              {productDisplay.image.map((imgSrc, index) => (
+                <img
+                 key={index}
+                 src={imgSrc}
+                 alt={`Thumbnail ${index + 1}`}
+                 className={`cursor-pointer w-full h-auto object-cover rounded border-2 ${
+                   selectedImage === imgSrc ? "border-yellow-500" : "border-gray-300"
+                 }`}
+                 onClick={() => setSelectedImage(imgSrc)}
+                />
+              ))}
+            </div>
+          )}
           <div className="flex flex-col md:flex-row gap-6 w-full">
           <div className="w-full md:w-1/2 product-img">
             <img

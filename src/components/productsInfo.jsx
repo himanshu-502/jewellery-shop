@@ -89,7 +89,7 @@ export const products = [
         id: 10,
         name: "Navya Charming Silver Bangles",
         price: "19,876.00",
-        image: [silver5],
+        image: [silver5, silver4],
         desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
     {

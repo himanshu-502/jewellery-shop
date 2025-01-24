@@ -15,6 +15,7 @@ import blog1 from "../assets/blog1.jpeg"
 import blog2 from "../assets/blog2.jpg"
 import blog3 from "../assets/blog3.jpg"
 import LocationCard from "./LocationCard";
+
 const locations = [
     {
       title: 'Flagship',
@@ -43,7 +44,8 @@ const locations = [
       directionsLink: '#',
     },
   ];
-const blogs = [
+
+  const blogs = [
     {
       image: blog1,
       date: 'January 14, 2025',
@@ -63,30 +65,42 @@ const blogs = [
       link: '#',
     },
   ];
-const products = [
+
+  const products = [
+    {
+      id: 32,
+      name: "Ritika Lovely Diamond Necklace",
+      price: "28,429.00",
+      image: [trend3, trend4],
+      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    },
     {
       id:33,
       image: [trend1, trend2],
-      title: 'Adya Classic Gold Bracelet',
+      name: 'Adya Classic Gold Bracelet',
       price: 64240,
+      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
     {
       id:34,
       image: [trend2, trend3],
-      title: 'Shubhi Pleasing  Gold Earrings',
+      name: 'Shubhi Pleasing  Gold Earrings',
       price: 21635,
+      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
     {
       id:35,
       image: [trend3, trend1],
-      title: 'Brezza Red & White Diamond Earrings',
+      name: 'Brezza Red & White Diamond Earrings',
       price: 47663,
+      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
     {
       id:36,
       image: [trend4, trend4],
-      title: 'Sia Elegant Diamond Necklace',
+      name: 'Sia Elegant Diamond Necklace',
       price: 99817,
+      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
   ];
   

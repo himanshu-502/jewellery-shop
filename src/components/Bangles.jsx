@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../styles/bangles.css";
+import "../styles/index.css";
 import silver5 from "../assets/silverbangles1.webp"
+import ProductCard from "./ProductCard.jsx";
 import { Link } from "react-router-dom";
 import { products } from "./productsInfo.jsx";
 import SortSelect from "./SortSelect";
@@ -51,27 +52,10 @@ const bangles = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <div
-              className="product-card border border-gray-300 rounded p-4 shadow-lg hover:shadow-xl transition-shadow"
-              key={product.id}
-            >
-              <Link to={`/menu/${product.id}`}>
-                <img
-                  src={product.image[0]}
-                  alt={product.name}
-                  className="w-full h-48 object-cover rounded mb-4"
-                />
-              </Link>
-              <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                {product.name}
-              </h3>
-              <p className="text-gray-500 mb-4">₹{product.price}</p>
-              <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 w-full">
-                Add to Cart
-              </button>
-            </div>
+        
+        <div className="product-list">
+          {filteredProducts.map((product, index) => (
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>
