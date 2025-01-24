@@ -44,6 +44,7 @@ const router = createBrowserRouter(
       <Route path="menu/:filter" element={<Menu />} />
       <Route path="cart" element={<Cart />} />
       <Route path="wishlist" element={<Wishlist />} />
+
       
     </Route>
   )

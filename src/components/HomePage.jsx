@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import image1 from '../assets/gold.png';
@@ -15,6 +15,10 @@ import blog1 from "../assets/blog1.jpeg"
 import blog2 from "../assets/blog2.jpg"
 import blog3 from "../assets/blog3.jpg"
 import LocationCard from "./LocationCard";
+import silver1 from "../assets/silverring.jpg"
+import diamond5 from "../assets/diamondbangles1.webp"
+import gold3 from "../assets/goldnecklace.jpg";
+import diamond3 from "../assets/diamondnecklace.jpeg"
 
 const locations = [
     {
@@ -69,7 +73,7 @@ const locations = [
   const products = [
     {
       id: 32,
-      name: "Ritika Lovely Diamond Necklace",
+      name: "Ritika Lovely Diamond Earings",
       price: "28,429.00",
       image: [trend3, trend4],
       desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
@@ -95,21 +99,63 @@ const locations = [
       price: 47663,
       desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
     },
+   
+  ];
+
+  const stocks = [
+        {
+            id: 30,
+            name: "Harshika Stunning Gold Necklace",
+            price: "18,754.00",
+            image: [gold3],
+            desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+        },
     {
-      id:36,
-      image: [trend4, trend4],
-      name: 'Sia Elegant Diamond Necklace',
-      price: 99817,
-      desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-    },
+            id: 32,
+            name: "Ritika Lovely Diamond Necklace",
+            price: "28,429.00",
+            image: [diamond3],
+            desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+        },
+    {
+            id: 16,
+            name: "Harshika Stunning Silver Wedding Ring",
+            price: "18,754.00",
+            image: [silver1],
+            desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+        },
+   
+   
   ];
   
 const HomePage = () => {
+  const [timeLeft, setTimeLeft] = useState(10 * 60 * 60);
+
+  // Effect to handle the countdown timer
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timerInterval = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timerInterval); // Cleanup interval on unmount
+  }, [timeLeft]);
+
+  // Function to format time into HH:MM:SS
+  const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
   return (
     <>
    <div className="mt-6 flex flex-col  gap-10">
     {/*Whats mind*/}
-    <div className=" font-serif  bg-gray-100 text-center mt-5 mb-0 md:mb-3 text-3xl font">What's on <span className="text-red-400 font-semibold">Your Mind!! </span></div>
+    <div className=" font-serif  text-center mt-5 mb-0 md:mb-3 text-4xl font">What's on <span className="text-red-400 font-semibold">Your Mind!! </span></div>
      {/*Categories*/}
   <div className="image-container mb-5">
     <Link to="/bangles">
@@ -136,17 +182,30 @@ const HomePage = () => {
    
 
   </div>
+  
     {/*Trending*/}
-  <div className=" bg-gray-100 text-center mt-5 mb-0 md:mb-3 text-3xl  font-serif ">Trending <span className="text-red-400 font-semibold">Jewellery</span></div>
+  <div className="  text-center mt-5 mb-0 md:mb-4 text-4xl  font-serif ">Trending <span >Jewellery</span></div>
    {/*Trending Sections*/}
    <div className="product-list">
       {products.map((product, index) => (
         <ProductCard key={index} product={product} />
       ))}
     </div>
+     {/*Limited*/}
+   <div className="   text-center mt-7 mb-0 md:mb-2 text-4xl  font-serif ">Limited <span >Stock</span></div>
+   {/*Limited Sections*/}
+   <div className="text-[20px] mt-2 mb-3 p-1  text-center bg-yellow-100 text-red-500 ">
+    Ends in :
+        {  timeLeft > 0 ? formatTime(timeLeft) : "Time's up!"}
+      </div>
+   <div className="product-list">
+      {stocks.map((stock, index) => (
+        <ProductCard key={index} product={stock} />
+      ))}
+    </div>
  {/*Blog Sections*/}
     <div className="blog-list">
-      <h2 className="blog-list-title">Latest Blogs</h2>
+      <h2 className="blog-list-title text-4x">Latest Blogs</h2>
       <div className="blog-list-grid">
         {blogs.map((blog, index) => (
           <BlogCard key={index} blog={blog} />
