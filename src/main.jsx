@@ -25,6 +25,7 @@ import "./index.css";
 import HomePage from "./components/HomePage.jsx";
 import Layout from "./components/Layout.jsx";
 import { CartWishlistProvider } from "./components/CartWishlistContext.jsx";
+import BlogRead from "./components/BlogRead.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -44,6 +45,8 @@ const router = createBrowserRouter(
       <Route path="menu/:filter" element={<Menu />} />
       <Route path="cart" element={<Cart />} />
       <Route path="wishlist" element={<Wishlist />} />
+      <Route path="blogread/:id" element={<BlogRead />} />
+
 
       
     </Route>

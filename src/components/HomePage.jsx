@@ -51,18 +51,21 @@ const locations = [
 
   const blogs = [
     {
+      id:1,
       image: blog1,
       date: 'January 14, 2025',
       title: 'Make Your Lohri And Makar Sankranti Special With Eagleview JewelTech Jewellers',
       link: '#',
     },
     {
+      id:2,
       image: blog2,
       date: 'January 16, 2025',
       title: 'Iconic Celebrity Jewellery Trends For 2025',
       link: '#',
     },
     {
+      id:3,
       image: blog3,
       date: 'January 18, 2024',
       title: 'How To Choose The Perfect Gold Jewellery For Winter Weddings',

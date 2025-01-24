@@ -62,14 +62,16 @@ const Header = () => {
     <header className="fixed shadow-md w-full  h-auto md:h-40vh px-2 md:px-4 z-50 bg-pink-100">
   
       {/*  mobile Desktop Navbar */}
-      <div className="flex flex-col  gap-2 justify-between mt-5">
-      <div className="flex items-center h-full justify-between  ">
+      <div className="flex flex-col  gap-2 justify-between  mt-5">
+      <div className="flex items-center h-full justify-between   ">
         {/* Logo */}
+        
         <Link to="/">
           <div className="h-10 ">
             <img src={logo} alt="Logo" className="h-full" />
           </div>
         </Link>
+        
 
         {/* Desktop Navigation */}
         <div className=" md:flex items-center gap-20 mx-auto">
@@ -78,7 +80,7 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="px-2 py-1 focus:outline-none "
+              className="px-2 py-1 focus:outline-none  "
              value={search}
               onChange={handlechange}
 
