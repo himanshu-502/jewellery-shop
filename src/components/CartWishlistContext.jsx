@@ -22,9 +22,21 @@ export const CartWishlistProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (id) => {
+    setCart((prevCart) => {
+      return prevCart
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0); // Remove items with quantity <= 0
+    });
+  };
+
   // Add to Wishlist function
   const addToWishlist = (product) => {
-    if (! (wishlist.length>0 && wishlist.some((item) => item.id === product.id))) {
+    if (!(wishlist.length > 0 && wishlist.some((item) => item.id === product.id))) {
       setWishlist([...wishlist, product]);
     }
   };
@@ -35,7 +47,16 @@ export const CartWishlistProvider = ({ children }) => {
   };
 
   return (
-    <CartWishlistContext.Provider value={{ cart, wishlist, addToCart, addToWishlist, removeFromWishlist }}>
+    <CartWishlistContext.Provider
+      value={{
+        cart,
+        wishlist,
+        addToCart,
+        addToWishlist,
+        removeFromWishlist,
+        removeFromCart, 
+      }}
+    >
       {children}
     </CartWishlistContext.Provider>
   );
