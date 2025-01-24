@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/index.css";
 import diamond2 from "../assets/diamondearings.webp"
 import { Link } from "react-router-dom";
-import { products } from "./productsInfo.jsx";
+import { products } from "./DataSet.jsx";
 import SortSelect from "./SortSelect";
 import ProductCard from "./ProductCard.jsx";
 

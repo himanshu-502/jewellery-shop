@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import '../styles/Recommend.css';
-import {products} from "./productsInfo";
+import {products} from "./DataSet";
 
 const Recommend = ({ productDisplay }) => {
   const relatedProducts = products.filter(

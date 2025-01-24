@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
       </Link>
       <h3 className="product-title">{product.name}</h3>
       <p className="product-price">Rs. {product.price.toLocaleString()}</p>
-      <Link to={`/menu/${product.id}`}>
+      <Link to={`/menu/${product.id}`} onClick={handleImageClick}>
         <button className="shop-now-btn">Shop Now &rsaquo;</button>
       </Link>
     </div>

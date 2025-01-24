@@ -18,7 +18,7 @@ import Ring from "./components/ring.jsx";
 import Necklace from "./components/necklace.jsx";
 import Earings from "./components/earings.jsx";
 import Bangles from "./components/bangles.jsx";
-import Menu from "./components/Menu.jsx";
+import Menu from "./components/ProductDesc.jsx";
 import Cart from "./components/Cart.jsx";
 import Wishlist from "./components/Wishlist.jsx";
 import "./index.css"; 

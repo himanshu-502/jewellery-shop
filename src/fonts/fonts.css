@@ -1,0 +1,11 @@
+/* Fonts css */
+
+@font-face {
+    font-family: "FontRegular";
+    src: local("FontRegular"), url("../src/fonts/BonaNovaSC-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "FontBold";
+    src: local("FontBold"), url("../src/fonts/BonaNovaSC-Bold.ttf") format("truetype");
+}

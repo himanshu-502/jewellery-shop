@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/index.css";
 import silver1 from "../assets/silverring.jpg";
 import { Link } from "react-router-dom";
-import { products } from "./productsInfo.jsx";
+import { products } from "./DataSet.jsx";
 import SortSelect from "./SortSelect";
 import ProductCard from "./ProductCard.jsx";
 

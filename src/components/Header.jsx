@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCartWishlist } from "./CartWishlistContext";
 import logo from "../assets/icon.png";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
@@ -11,6 +12,7 @@ import "../index.css"
 import { IoSearch } from "react-icons/io5";
 import mob from "../assets/mobiledrop.webp"
 import { useNavigate } from "react-router-dom";
+import Marquee from "react-fast-marquee";
 
 const options=[
     "gold","silver","diamond","wedding","ring","bangles","earings","necklace"
@@ -57,6 +59,13 @@ const Header = () => {
     sidemenu(); 
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const { cart} = useCartWishlist();
+  const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
+  
+
+
   return (<>
     
     <header className="fixed shadow-md w-full  h-auto md:h-40vh px-2 md:px-4 z-50 bg-pink-100">
@@ -76,7 +85,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className=" md:flex items-center gap-20 mx-auto">
           {/* Search Bar */}
-          <div className="hidden md:flex items-center border border-gray-300 rounded-lg overflow-hidden  ">
+          <div className="hidden md:flex items-center border-gray-300 rounded-lg overflow-hidden  ">
             <input
               type="text"
               placeholder="Search..."
@@ -89,8 +98,10 @@ const Header = () => {
               Search
             </button>
           </div>
-
+          </div>
+          
           {/* Navigation Links */}
+          <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-base md:text-lg mx-auto">
             <Link to="/" className=" hover:scale-120 hover:text-red-700 font-extralight hover:font-bold transition duration-300">
               Home
@@ -109,19 +120,21 @@ const Header = () => {
               Contact Us
             </Link>
           </nav>
-        </div>
+        
 
         {/* Icons */}
-        <div className="flex items-center gap-4">
+        
           
           {/* Cart Icon */}
           <div className="text-2xl text-slate-600 relative">
-            <Link to="/cart">
-              <BsCartFill />
-              <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center ">
-                
+          <Link to="/cart" className="relative">
+            <BsCartFill size={24} />
+            {totalQty > 0 && (
+              <div className="absolute -top-8 -right-8 text-white bg-red-500 h-5 w-5 rounded-full flex items-center justify-center text-xs font-bold">
+                {totalQty}
               </div>
-            </Link>
+            )}
+          </Link>
           </div>
            {/* wishlist Icon */}
           <div className="text-2xl text-slate-600">
@@ -130,12 +143,32 @@ const Header = () => {
             </Link>
           </div>
           {/* User Icon */}
-          <div  className="text-2xl text-slate-600 ">
+          <div 
+            className="relative text-2xl text-slate-600"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Link to="/account">
               <HiOutlineUserCircle />
             </Link>
-            
 
+            {isHovered && (
+              <div
+                className={`absolute right-0 top-12 bg-white shadow-xl border border-gray-200 rounded-lg w-64 p-4 z-50 transition-transform duration-300 ease-in-out ${
+                  isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"
+                }`}
+              >
+                <h3 className="text-lg font-bold text-gray-800 mb-2">User Info</h3>
+                <p className="text-sm text-gray-600">John Doe</p>
+                <p className="text-sm text-gray-600">johndoe@example.com</p>
+                <button
+                  className="mt-3 w-full bg-red-400 text-white py-2 px-3 rounded hover:bg-red-600 transition duration-200"
+                  onClick={() => console.log("Log Out")}
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
           </div>
          
 
@@ -153,7 +186,7 @@ const Header = () => {
 
 
 
-      <div className=" mx-auto block md:hidden flex items-center border w-auto border-gray-300 border-none rounded-2xl overflow-hidden ">
+      <div className=" mx-auto block md:hidden flex items-center w-auto border-gray-300 border-none rounded-2xl overflow-hidden ">
             <input
               type="text"
               placeholder="Search..."
@@ -230,9 +263,13 @@ const Header = () => {
 
         <div className=" mt-auto w-full relative top-5 p-2 bg-gray-100 hidden md:block">
              
-              <p className="text-lg mb-4">
-                Discover our wide range of jewelry collections including gold, diamond, and silver!
-              </p>
+              <div className=" jewel_type w-full relative  p-2 bg-gray-100 hidden md:block">
+              <Marquee speed={35}> 
+                Discover our wide range of jewelry collections including gold, diamond, and silver!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                50% off on Making Charges &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Free shipping on Pre-Paid Orders&nbsp;&nbsp;&nbsp;&nbsp;
+              </Marquee>
+              
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {/* Gold Collection */}
                 <Link
@@ -265,6 +302,7 @@ const Header = () => {
                 >
                   Wedding Wear
                 </Link>
+              </div>
               </div>
             </div>
 

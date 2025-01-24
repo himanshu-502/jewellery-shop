@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
 import {useCartWishlist} from "./CartWishlistContext.jsx";
 import "../styles/magnifier.css";
-import {products} from './productsInfo.jsx';
+import {products} from './DataSet.jsx';
 import Recommend from "./Recommend.jsx";
 
 import necklace from "../assets/necklace.svg"

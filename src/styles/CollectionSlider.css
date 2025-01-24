@@ -1,0 +1,136 @@
+/* Slider Container */
+.slider {
+  padding: 20px;
+  text-align: center;
+  width: 80vw; /* Fixed width for the main div */
+  max-width: 1200px; /* Maximum width for larger screens */
+  margin: 0 auto; /* Center the slider */
+}
+
+/* Slider Title */
+.slider-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-family: serif;
+  color: #333;
+}
+
+/* Slider Wrapper */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+}
+
+/* Arrows */
+.slider-arrow {
+  background-color: #fff;
+  /* border: 2px solid #333; */
+  border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.slider-arrow svg {
+  fill: #333;
+  width: 24px;
+  height: 24px;
+}
+
+.slider-arrow:disabled svg {
+  fill: #ccc;
+  cursor: not-allowed;
+}
+
+.slider-arrow:hover:not(:disabled) {
+  transform: scale(1.2);
+}
+
+/* Slider Items */
+.slider-container {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 15vw;
+  max-width: 200px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: fill;
+  border: 2px solid #ccc;
+  padding: 5px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.image-wrapper p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .slider {
+    width: 90vw; /* Slightly larger on tablets */
+  }
+
+  .image-wrapper {
+    width: 25vw;
+  }
+
+  .slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider {
+    width: 95vw; /* Full width on smaller screens */
+  }
+
+  .image-wrapper {
+    width: 40vw;
+  }
+
+  .slider-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
+.left-arrow {
+  position: absolute;
+  left: 0px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 0px;
+}

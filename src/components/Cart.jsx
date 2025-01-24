@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Cart() {
   const { cart, addToCart, removeFromCart } = useCartWishlist();
 
-  const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price.replace(/,/g, "")) * item.quantity, 0);
+  const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price.toString().replace(/,/g, "")) * item.quantity, 0);
 
   return (
     <div className="cart-container mt-10">

@@ -4,7 +4,7 @@ import "../styles/Cart.css";
 import { Link } from "react-router-dom";
 
 function Wishlist() {
-  const { wishlist, addToWishlist, removeFromWishlist } = useCartWishlist();
+  const { wishlist, removeFromWishlist } = useCartWishlist();
 
   return (
     <div className="cart-container mt-10">

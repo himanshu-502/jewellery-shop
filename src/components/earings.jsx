@@ -2,8 +2,8 @@ import gold2 from "../assets/goldearings.webp"
 import React, { useState } from "react";
 import "../styles/index.css";
 import { Link } from "react-router-dom";
-import { products } from "./productsInfo.jsx";
-import SortSelect from "./SortSelect";
+import { products } from "./DataSet.jsx";
+import SortSelect from "./SortSelect.jsx";
 import ProductCard from "./ProductCard.jsx";
 
 const earings = () => {

@@ -2,7 +2,7 @@ import gold1 from "../assets/goldring.webp"
 import React, { useState } from "react";
 import "../styles/index.css";
 import { Link } from "react-router-dom";
-import { products } from "./productsInfo.jsx";
+import { products } from "./DataSet.jsx";
 import SortSelect from "./SortSelect";
 import ProductCard from "./ProductCard.jsx";
 

@@ -3,7 +3,7 @@ import "../styles/index.css";
 import silver5 from "../assets/silverbangles1.webp"
 import ProductCard from "./ProductCard.jsx";
 import { Link } from "react-router-dom";
-import { products } from "./productsInfo.jsx";
+import { products } from "./DataSet.jsx";
 import SortSelect from "./SortSelect";
 
 const bangles = () => {

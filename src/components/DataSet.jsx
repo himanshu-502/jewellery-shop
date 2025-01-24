@@ -4,7 +4,6 @@ import gold3 from "../assets/goldnecklace.jpg";
 import gold4 from "../assets/earings.webp";
 import gold5 from "../assets/gold.png";
 
-import image from "../assets/earings.webp"
 import silver1 from "../assets/silverring.jpg"
 import silver2 from "../assets/silverearings.webp"
 import silver3 from "../assets/silvernecklace.jpg"
@@ -17,7 +16,6 @@ import diamond3 from "../assets/diamondnecklace.jpeg"
 import diamond4 from "../assets/diamondbangles.jpeg"
 import diamond5 from "../assets/diamondbangles1.webp"
 
-import trend1 from '../assets/trend1.jpeg';
 import trend2 from '../assets/trend2.webp';
 import trend3 from '../assets/trend3.jpg';
 import trend4 from '../assets/trend4.webp';

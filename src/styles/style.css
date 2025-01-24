@@ -1,0 +1,47 @@
+/* Header */
+.logo{
+    /* width: 0rem; */
+    height: 5rem;
+    /* margin-left: 5rem */
+}
+.logoname{
+    font-family: FontRegular;
+    font-size: 2rem;
+    color: maroon;
+}
+.searchbox{
+    display: flex;
+    align-items: center;
+}
+/* .searchbox :hover{
+    box-shadow: 3px solid grey;
+    border-color:  indianred;
+} */
+.search{
+    width: 20rem;
+    height: 2rem;
+}
+.icon_search{
+    background-color: white;
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+}
+
+.icon_heart :hover{
+    color: indianred;
+    /* transform: scale(1.); */
+}
+.icon_user :hover{
+    transform: scale(1.1);
+}
+
+/* Homepage starts */
+.jewel_type{
+    margin-top: 0;
+}
+.rfm-marquee-container{
+    background-color: indianred;
+    color: white;
+    margin-bottom: 0.5rem;
+}
