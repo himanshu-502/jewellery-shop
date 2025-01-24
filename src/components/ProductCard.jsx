@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
   return (
     <div
       key={product.id}
-      className="product-card"
+      className="product-card mx-auto w-full "
       onMouseEnter={() => setIsHovered(true)} // Start slideshow on hover
       onMouseLeave={() => setIsHovered(false)} // Stop slideshow on hover leave
     >

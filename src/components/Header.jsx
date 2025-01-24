@@ -23,6 +23,7 @@ const Header = () => {
   const handlechange=(e)=>{
      setsearch(e.target.value)
   }
+ 
   const handleSearch = () => {
     for(let i=0;i<options.length;i++)
     {
@@ -34,12 +35,14 @@ const Header = () => {
     if (search.trim().toLowerCase() !== ""  && phrase.trim().toLowerCase() === search.trim().toLowerCase()) {
       navigate(`/${search.trim()}`); 
       setsearch("")
+      phrase=""
     }
     else if(phrase.trim().toLowerCase() !== ""){  navigate(`/${phrase.trim()}`); 
-    setsearch("")} 
+    setsearch("");phrase=""} 
     else {
       alert("Please enter a valid search term"); 
       setsearch("")
+      phrase=""
     }
   };
   const[toggle,settoggle]=useState(false)
