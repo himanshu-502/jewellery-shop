@@ -1,23 +1,8 @@
 import React from 'react'
 import image from "../assets/aboutbanner.jpg"
 import about1 from "../assets/about1.webp"
-import about3 from "../assets/about3.jpg"
-import about4 from "../assets/about4.jpg"
-import about5 from "../assets/about5.jpeg"
-const items = [
-  {
-    imgSrc: about3,
-    caption: "Chic & Contemporary",
-  },
-  {
-    imgSrc: about4, 
-    caption: "Elegance",
-  },
-  {
-    imgSrc: about5, 
-    caption: "Adornments",
-  },
-];
+import {aboutDesc} from "./DataSet";
+
 function AboutPage() {
   
   return (
@@ -64,7 +49,7 @@ function AboutPage() {
 
  
       <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-4">
-        {items.map((item, index) => (
+        {aboutDesc.map((item, index) => (
           <div key={index} className="flex flex-col items-center">
           
             <img

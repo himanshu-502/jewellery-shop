@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/productcard.css'; 
 import { Link } from 'react-router-dom';
+import CartWishlist from './AddToCartWishlist';
 
 const ProductCard = ({ product }) => {
   const [currentImage, setCurrentImage] = useState(product.image[0]); // Default to the first image
@@ -46,9 +47,11 @@ const ProductCard = ({ product }) => {
       </Link>
       <h3 className="product-title">{product.name}</h3>
       <p className="product-price">Rs. {product.price.toLocaleString()}</p>
-      <Link to={`/menu/${product.id}`} onClick={handleImageClick}>
+      <div><CartWishlist productId = {Number(product.id)} /></div>
+      
+      {/* <Link to={`/menu/${product.id}`} onClick={handleImageClick}>
         <button className="shop-now-btn">Shop Now &rsaquo;</button>
-      </Link>
+      </Link> */}
     </div>
   );
 };

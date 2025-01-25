@@ -1,73 +1,31 @@
 import React,{useState, useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
-import {useCartWishlist} from "./CartWishlistContext.jsx";
 import "../styles/magnifier.css";
-import {products} from './DataSet.jsx';
+import {products, features, assurances} from './DataSet.jsx';
 import Recommend from "./Recommend.jsx";
-
-import necklace from "../assets/necklace.svg"
-import delivery from "../assets/delivery.svg"
-import time from "../assets/time.svg"
-import certified from "../assets/certified.svg"
-
-import maintenance from "../assets/maintenance.webp"
-import transparency from "../assets/transparency.webp"
-import purity from "../assets/purity.webp"
-
-
-const features = [
-  {
-    icon: necklace, 
-    title: "Contemporary Designs",
-  },
-  {
-    icon: certified, 
-    title: "Bis Hallmark",
-  },
-  {
-    icon: time, 
-    title: "Easy Lifetime Exchange",
-  },
-  {
-    icon:delivery,
-    title: "Insured Delivery",
-  },
-
-];
-
-const assurances = [
- 
-  {
-    icon: purity, 
-    text: "The Purity Guarantee",
-  },
-  {
-    icon: transparency,
-    text: "Complete Transparency and Trust",
-  },
-  {
-    icon: maintenance, 
-    text: "Lifetime Maintenance",
-  },
-];
+import CartWishlist from "./AddToCartWishlist.jsx";
 
 const Menu = () => {
-    const { filter } = useParams();
+    const { productId } = useParams();
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
     const [reviews, setReviews] = useState([]);
     const [reviewText, setReviewText] = useState("");
-  
-    // Convert filter to a number and find the product
-    const productDisplay = products.find((product) => product.id === Number(filter));
-    // Fallback for invalid product ID
+
+
+    
+    const [productDisplay, setProductDisplay] = useState(products.find((product) => product.id === Number(productId)));
+    const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
+    const [isActive, setIsActive] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(productDisplay.image[0]); 
+    
     if (!productDisplay) {
       return (
         <div className="text-center text-red-500 mt-10">
           <h1>Product Not Found</h1>
           <p>The product you're looking for does not exist.</p>
-          <Link to="/gold" className="text-blue-500 underline">
-            Back to Gold Collection
+          <Link to="/" className="text-blue-500 underline">
+            Back to Main Menu
           </Link>
         </div>
       );
@@ -81,11 +39,21 @@ const Menu = () => {
         setRating(0);
       }
     };
+    
 
-    const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
-    const [isActive, setIsActive] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(productDisplay.image[0]); 
+    useEffect(() => {
+      // Find the product based on the productId
+      const newProduct = products.find((product) => product.id === Number(productId));
+      setProductDisplay(newProduct);
+      setSelectedImage(newProduct.image[0]);
+      setReviews([]);
 
+    }, [productId]); 
+    
+    
+
+    
+    
     useEffect(() => {
       const lens = document.querySelector(".magnifier-lens");
       const productImg = document.querySelector(".product-img img");
@@ -115,53 +83,51 @@ const Menu = () => {
           -${x * cx}px -${y * cy}px
           / ${productImgRect.width * cx}px ${productImgRect.height * cy}px
           no-repeat`;
-      };
+        };
 
-      const handleMouseEnter = () => setIsActive(true);
-      const handleMouseLeave = () => setIsActive(false);
+          const handleMouseEnter = () => setIsActive(true);
+          const handleMouseLeave = () => setIsActive(false);
 
-      lens.addEventListener("mousemove", moveLens);
-      productImg.addEventListener("mousemove", moveLens);
-      lens.addEventListener("mouseenter", handleMouseEnter);
-      productImg.addEventListener("mouseenter", handleMouseEnter);
-      lens.addEventListener("mouseleave", handleMouseLeave);
-      productImg.addEventListener("mouseleave", handleMouseLeave);
+          lens.addEventListener("mousemove", moveLens);
+          productImg.addEventListener("mousemove", moveLens);
+          lens.addEventListener("mouseenter", handleMouseEnter);
+          productImg.addEventListener("mouseenter", handleMouseEnter);
+          lens.addEventListener("mouseleave", handleMouseLeave);
+          productImg.addEventListener("mouseleave", handleMouseLeave);
 
-      return () => {
-        lens.removeEventListener("mousemove", moveLens);
-        productImg.removeEventListener("mousemove", moveLens);
-        lens.removeEventListener("mouseenter", handleMouseEnter);
-        productImg.removeEventListener("mouseenter", handleMouseEnter);
-        lens.removeEventListener("mouseleave", handleMouseLeave);
-        productImg.removeEventListener("mouseleave", handleMouseLeave);
-      };
+        return () => {
+            lens.removeEventListener("mousemove", moveLens);
+            productImg.removeEventListener("mousemove", moveLens);
+            lens.removeEventListener("mouseenter", handleMouseEnter);
+            productImg.removeEventListener("mouseenter", handleMouseEnter);
+            lens.removeEventListener("mouseleave", handleMouseLeave);
+            productImg.removeEventListener("mouseleave", handleMouseLeave);
+        };
     }, []);
 
 
-    const { addToCart, addToWishlist, wishlist } = useCartWishlist();
-
-    const isInWishlist = wishlist.length>0 && wishlist.some((item) => item.id === productDisplay.id);
     // console.log(productDisplay);
     // console.log(isInWishlist);
     return (
       <div className="p-4 mt-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg gap-6">
 
-          {productDisplay.image.length>1 && (
-            <div className="w-full md:w-1/6 flex flex-col gap-3 p-4">
-              {productDisplay.image.map((imgSrc, index) => (
-                <img
-                 key={index}
-                 src={imgSrc}
-                 alt={`Thumbnail ${index + 1}`}
-                 className={`cursor-pointer w-full h-auto object-cover rounded border-2 ${
-                   selectedImage === imgSrc ? "border-yellow-500" : "border-gray-300"
-                 }`}
-                 onClick={() => setSelectedImage(imgSrc)}
-                />
-              ))}
-            </div>
-          )}
+            {productDisplay.image.length > 1 && (
+              <div className="w-full flex flex-wrap md:w-1/6 md:flex-col gap-3 p-4">
+                {productDisplay.image.map((imgSrc, index) => (
+                  <img
+                    key={index}
+                    src={imgSrc}
+                    alt={`Thumbnail ${index + 1}`}
+                    className={`cursor-pointer w-24 h-24 object-cover rounded border-2 ${
+                      selectedImage === imgSrc ? "border-yellow-500" : "border-gray-300"
+                    }`}
+                    onClick={() => setSelectedImage(imgSrc)}
+                  />
+                ))}
+              </div>
+            )}
+
           <div className="flex flex-col md:flex-row gap-6 w-full">
           <div className="w-full md:w-1/2 product-img">
             <img
@@ -206,20 +172,13 @@ const Menu = () => {
         <p>{productDisplay.desc}</p>
         <div className="font-serif font-semibold p-3 mx-auto text-end text-red-500 text-1xl">By EagleView </div>
       </div>
-            <div className="mt-4 flex gap-4">
-              <button onClick={()=>{ addToCart(productDisplay) }} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-                Add to Cart
-              </button>
-              <button onClick={()=>{ addToWishlist(productDisplay) }} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-                {isInWishlist?'Already in Wishlist':'Add to Wishlist'}
-              </button>
-            </div>
-            <div
-              className={`magnified-img ${isActive ? "active" : ""}`}
-            ></div>
-          </div>
+      <div><CartWishlist productId = {Number(productId)} /></div>
+      <div
+        className={`magnified-img ${isActive ? "active" : ""}`}
+      ></div>
         </div>
-        </div>
+      </div>
+      </div>
 
         {/*purity*/}
   <div className="bg-white py-8 mt-8">

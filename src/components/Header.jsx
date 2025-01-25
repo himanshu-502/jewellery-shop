@@ -13,11 +13,9 @@ import { IoSearch } from "react-icons/io5";
 import mob from "../assets/mobiledrop.webp"
 import { useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import { collections } from "./DataSet";
 
-const options=[
-    "gold","silver","diamond","wedding","ring","bangles","earings","necklace"
-]
-
+const options = collections.map((item) => item.label.toLowerCase());
 const Header = () => {
   let phrase=""
   const navigate=useNavigate()
@@ -31,15 +29,16 @@ const Header = () => {
     {
       if(options[i].includes(search.trim().toLowerCase()))
       {
-        phrase=options[i]
+        phrase=options[i];
+        break;
       }
     }
     if (search.trim().toLowerCase() !== ""  && phrase.trim().toLowerCase() === search.trim().toLowerCase()) {
-      navigate(`/${search.trim()}`); 
+      navigate(`/collections/${search.trim()}`); 
       setsearch("")
       phrase=""
     }
-    else if(phrase.trim().toLowerCase() !== ""){  navigate(`/${phrase.trim()}`); 
+    else if(phrase.trim().toLowerCase() !== ""){  navigate(`/collections/${phrase.trim()}`); 
     setsearch("");phrase=""} 
     else {
       alert("Please enter a valid search term"); 
@@ -64,6 +63,11 @@ const Header = () => {
   const { cart} = useCartWishlist();
   const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
   
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };  
 
 
   return (<>
@@ -261,51 +265,42 @@ const Header = () => {
       
       </div>
 
-        <div className=" mt-auto w-full relative top-5 p-2 bg-gray-100 hidden md:block">
-             
-              <div className=" jewel_type w-full relative  p-2 bg-gray-100 hidden md:block">
-              <Marquee speed={35}> 
-                Discover our wide range of jewelry collections including gold, diamond, and silver!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                50% off on Making Charges &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Free shipping on Pre-Paid Orders&nbsp;&nbsp;&nbsp;&nbsp;
-              </Marquee>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {/* Gold Collection */}
-                <Link
-                  to="/gold"
-                  className="bg-white shadow-md p-4 rounded-lg text-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:bg-yellow-200"
+            <div
+              className={`relative transition-opacity duration-500 ease-out ${
+                isVisible ? "opacity-100" : "opacity-0"
+              } ${isVisible ? "h-auto" : "h-0 overflow-hidden"}`}
+              style={{ background: "indianred" }}
+            >
+              <div className="relative">
+                {/* Close Button */}
+                <button
+                  onClick={handleClose}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black-500 focus:outline-none z-10"
                 >
-                  Gold Collection
-                </Link>
-        
-                {/* Diamond Collection */}
-                <Link
-                  to="/diamond"
-                  className="bg-white shadow-md p-4 rounded-lg text-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:bg-blue-200"
-                >
-                  Diamond Collection
-                </Link>
-        
-                {/* Silver Collection */}
-                <Link
-                  to="/silver"
-                  className="bg-white shadow-md p-4 rounded-lg text-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:bg-gray-200"
-                >
-                  Silver Collection
-                </Link>
-        
-                {/* Wedding Wear */}
-                <Link
-                  to="/wedding"
-                  className="bg-white shadow-md p-4 rounded-lg text-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:bg-pink-50"
-                >
-                  Wedding Wear
-                </Link>
-              </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L12 10.586l6.293-6.293a1 1 0 111.414 1.414L13.414 12l6.293 6.293a1 1 0 01-1.414 1.414L12 13.414l-6.293 6.293a1 1 0 01-1.414-1.414L10.586 12 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+            
+                {/* Marquee Content */}
+                <div className="pl-8">
+                  <Marquee speed={35}>
+                    Discover our wide range of jewelry collections including gold, diamond, and silver!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    50% off on Making Charges&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Free shipping on Pre-Paid Orders&nbsp;&nbsp;&nbsp;&nbsp;
+                  </Marquee>
+                </div>
               </div>
             </div>
-
       
       </header>
       </>
