@@ -199,7 +199,7 @@ const ProductDesc = () => {
 
       {/* Product Recommendation */}
 
-      <div className="bg-white py-8 mt-8">
+      <div className=" py-8 mt-8"  style={{ backgroundColor: "#fff" }}>
         <div className="flex justify-center gap-8 ">
           <Recommend productDisplay={productDisplay} />
         </div>

@@ -41,7 +41,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-black text-white "> {/* Footer Section */}
-      <div className="container mx-auto py-8 px-4 lg:px-0">
+      <div className="container mx-auto py-4 px-5 lg:px-0">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-bold mb-4">About Us</h3>
@@ -92,7 +92,7 @@ const Footer = () => {
             ) : (
               <p className="text-green-500 text-sm">You are subscribed!</p>
             )}
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-4 ">
               <a href="https://facebook.com" className="text-xl hover:text-gray-400" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook text-3xl text-blue-400"></i>
               </a>
@@ -107,7 +107,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 py-4 shadow-2xl border-b-slate-700">
+      <div className="bg-gray-900  shadow-2xl border-b-slate-700">
         <div className="container mx-auto text-center text-sm">
           <p>&copy; 2025 EagleView JewelTechs Jeweller. All Rights Reserved.</p>
         </div>

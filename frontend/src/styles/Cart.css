@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -91,7 +91,12 @@ h2 {
   font-weight: bold;
   color: #333;
 }
-
+.pay-now-btn{
+  background-color: rgb(120, 29, 66);
+}
+.pay-now-btn:hover{
+  background-color: #C65D7B !important;
+}
 @media (max-width: 600px) {
   .cart-item {
     flex-direction: column;
@@ -108,7 +113,7 @@ h2 {
 }
 
 .wishlist-remove-btn {
-  background-color: #ff4d4d;
+  background-color: rgb(120, 29, 66);
   color: white;
   border: none;
   padding: 8px 12px;
@@ -119,7 +124,7 @@ h2 {
 }
 
 .wishlist-remove-btn:hover {
-  background-color: #cc0000;
+  background-color:  #C65D7B
 }
 
 .empty-cart {

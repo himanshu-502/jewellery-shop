@@ -1,4 +1,12 @@
 .product-card {
+  position: relative; /* Important for the icon to be positioned */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;   */
+  flex: 1 1 250px; 
+  justify-content: space-around;
+  margin: 8px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -12,6 +20,18 @@
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   background-color: #f9f9f9;
+}
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Space between cards */
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .product-card {
+    flex: 1 1 100%; /* Full width for smaller screens */
+    max-width: none;
+  }
 }
 
 .product-card button {
@@ -56,15 +76,26 @@
 .product-card:hover .product-price {
   color: #C65D7B;
 }
-
+.button-container {
+  display: flex;                /* Align buttons side by side */
+  justify-content: center;      /* Center the buttons horizontally */
+  align-items: center;          /* Align buttons vertically */
+  gap: 20px;                    /* Space between the buttons */
+}
 add-cart-btn {
   background-color: #610C63 !important;
   color: #FFF9D7;
 }
 
 .wishlist-btn {
-  background-color: #f9f9f9 !important;
+  position: absolute;
+  bottom: 30px; /* Adjust this value as per design */
+  right: 10px; /* Adjust this value for spacing */
+  z-index: 10;
+  background-color: #fff !important;
   padding: 0px !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .wishlist-btn:hover {

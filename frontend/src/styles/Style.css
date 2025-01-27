@@ -3,7 +3,7 @@
 }
 
 .logoname {
-    font-family: FontRegular;
+    font-family: FontRegular !important;
     font-size: 2rem;
     color: rgb(120, 29, 66);
 }
@@ -17,7 +17,9 @@
     width: 20rem;
     height: 2rem;
 }
-
+.search1 :hover{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .icon_search {
     background-color: white;
     background-size: cover;
@@ -33,6 +35,7 @@
 
 .menu-item {
     color: rgb(120, 29, 66);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .menu-item:hover {
@@ -61,6 +64,7 @@
 
 .banner-title1 {
     color: #610C63;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .banner-title2 {

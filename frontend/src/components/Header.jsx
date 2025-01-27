@@ -95,7 +95,7 @@ const Header = () => {
               JewelTech
             </div>
 
-            <div className=" md:flex items-center gap-20 mx-auto">
+            <div className=" md:flex items-center gap-20 mx-auto search1">
 
               <div className="hidden md:flex items-center border-gray-300 rounded-md overflow-hidden search1 ">
                 <input

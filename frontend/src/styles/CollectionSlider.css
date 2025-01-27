@@ -86,7 +86,7 @@
 }
 
 .image-wrapper p {
-  font-family: FontRegular;
+  font-family: FontRegular !important;
   font-size: 1rem;
   color: #810955;
 }

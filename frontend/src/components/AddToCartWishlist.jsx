@@ -12,7 +12,7 @@ const CartWishlist = ({ productId }) => {
   return (
     <>
 
-      <div className="mt-4 flex items-center justify-between">
+      <div className="btn-container mt-4 flex items-center justify-between">
         {/* Add to Cart Button */}
         <div className="flex-1 text-center flex items-center justify-center">
           {productInCart ? (

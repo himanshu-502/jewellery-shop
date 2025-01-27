@@ -90,7 +90,7 @@ function Cart() {
           <div className="cart-total">
             <h3>Total Price: ₹{totalPrice.toLocaleString()}</h3>
             <button
-              className="pay-now-btn bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 mt-4"
+              className="pay-now-btn  text-white py-2 px-4 rounded  transition duration-200 mt-4"
               onClick={handlePayNow}
             >
               Pay Now

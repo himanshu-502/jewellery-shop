@@ -96,8 +96,8 @@ const HomePage = () => {
       {/*Limited*/}
       {timeLeft > 0 && (
         <div>
-          <div className="text-center mt-7 mb-0 md:mb-2 text-4xl  font-serif banner-title1">Limited <span >Period Offer</span></div>
-          <div className="text-[20px] mt-2 mb-3 p-1  text-center limited-countdown ">
+          <div className="text-center pt-7 mb-0  text-4xl  font-serif banner banner-title1">Limited <span >Period Offer</span></div>
+          <div className="text-[20px]   text-center limited-countdown ">
             Ends in :
             {timeLeft > 0 ? formatTime(timeLeft) : "Time's up!"}
           </div>
