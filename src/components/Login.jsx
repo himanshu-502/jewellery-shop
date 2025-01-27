@@ -4,16 +4,18 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 import image from "../assets/account.png"
+import { userDetails } from "./DataSet";
+import { useUserProfile } from "./UserProfileContext";
+
 const Login=()=> {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [data, setData] = useState({
-     
       email: "",
       password: "",
-      
-     
     });
+
+    const { setUserProfile } = useUserProfile(); 
   
     const handleShowPassword = () => {
       setShowPassword((preve) => !preve);
@@ -22,9 +24,9 @@ const Login=()=> {
   
     const handleOnChange = (e) => {
       const { name, value } = e.target;
-      setData((preve) => {
+      setData((prev) => {
         return {
-          ...preve,
+          ...prev,
           [name]: value,
         };
       });
@@ -35,14 +37,18 @@ const Login=()=> {
     const handleSubmit = (e) => {
       e.preventDefault();
       const { email, password} = data;
-      if ( email && password ) {
-        
-         alert("Successfull")
+      const userData = userDetails.find(
+        (user) => user.email === email && user.password === password
+      );
+      if ( userData) {
+         setUserProfile(userData);  // Update the context with user data
+         alert("Login Successfull")
+         navigate("/");
          
     
         
       } else {
-        alert("Please Enter required fields");
+        alert("Invalid Email or Password!!");
       }
     };
   return (
@@ -96,7 +102,7 @@ const Login=()=> {
   </form>
   <p className="text-left text-sm mt-2">
     Do not have account ?{" "}
-    <Link to={"/account"} className="text-red-500 underline">
+    <Link to={"/signup"} className="text-red-500 underline">
       SignUp
     </Link>
   </p>

@@ -40,6 +40,31 @@ import trend4 from '../assets/trend4.webp';
 
 export const limitedStockPeriod = 1*60;
 
+export const serviceId = "service_k85xtag";
+export const templateId = "template_drq01ga";
+export const publicKey = "OtwzDqoZvI8Go4_Ic";
+
+export const userDetails = [
+  {
+    firstName: "Himanshu", 
+    lastName: "Bansal", 
+    email: "abcd@gmail.com", 
+    password: "abcd",
+  },
+  {
+    firstName: "Aanvi", 
+    lastName: "Varma", 
+    email: "abc@gmail.com", 
+    password: "abcd",
+  },
+  {
+    firstName: "Chirag", 
+    lastName: "Gupta", 
+    email: "ab@gmail.com", 
+    passwrod: "abcd",
+  },
+];
+
 export const trendingProducts = [
     {
       id: 32,

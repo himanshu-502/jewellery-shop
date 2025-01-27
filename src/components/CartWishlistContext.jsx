@@ -34,6 +34,9 @@ export const CartWishlistProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () => setCart([]);
+
+
   // Add to Wishlist function
   const addToWishlist = (product) => {
     if (!(wishlist.length > 0 && wishlist.some((item) => item.id === product.id))) {
@@ -55,6 +58,7 @@ export const CartWishlistProvider = ({ children }) => {
         addToWishlist,
         removeFromWishlist,
         removeFromCart, 
+        clearCart,
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import image from "../assets/account.png"
 
 
-const Account=()=> {
+const SignUp=()=> {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [data, setData] = useState({
@@ -35,14 +35,15 @@ const Account=()=> {
     };
   
     
-  
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
       e.preventDefault();
       const { firstName, email, password, confirmPassword } = data;
       if (firstName && email && password && confirmPassword) {
         if (password === confirmPassword) {
-         alert("Successfull")
-         
+         alert("SignUp Successfull")
+         navigate("/login");
         } else {
           alert("password and confirm password not equal");
         }
@@ -143,4 +144,4 @@ const Account=()=> {
   )
 }
 
-export default Account
+export default SignUp;

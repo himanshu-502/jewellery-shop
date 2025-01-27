@@ -1,21 +1,57 @@
-import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import {serviceId, templateId, publicKey} from './DataSet.jsx';
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    // Check if email is not empty and valid
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setError(""); // Clear any previous errors
+
+    // EmailJS logic
+    emailjs
+      .send(
+        serviceId, // Replace with your EmailJS service ID
+        templateId, // Replace with your EmailJS template ID
+        { user_email: email }, // Pass the user's email
+        publicKey // Replace with your EmailJS public key
+      )
+      .then(
+        (response) => {
+          console.log("Email sent successfully:", response.status, response.text);
+          setSubscribed(true); // Update UI to show subscription success
+        },
+        (error) => {
+          console.error("Failed to send email:", error);
+          setError("Failed to subscribe. Please try again.");
+        }
+      );
+  };
+
   return (
     <footer className="bg-black text-white ">
       {/* Footer Top Section */}
-      <div className="container mx-auto  py-8 px-4 lg:px-0  ">
+      <div className="container mx-auto py-8 px-4 lg:px-0">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
             <h3 className="text-lg font-bold mb-4">About Us</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/our-story" className="hover:text-gray-400">Our Story</Link></li>
-              <li><Link to="/careers" className="hover:text-gray-400">Careers</Link></li>
-              <li><Link to="/press" className="hover:text-gray-400">Press</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Our Story</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Careers</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Press</Link></li>
             </ul>
           </div>
 
@@ -24,8 +60,8 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Customer Care</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/contact" className="hover:text-gray-400">Contact Us</Link></li>
-              <li><Link to="/faqs" className="hover:text-gray-400">FAQs</Link></li>
-              <li><Link to="/returns" className="hover:text-gray-400">Returns & Exchanges</Link></li>
+              <li><Link to="/contact" className="hover:text-gray-400">FAQs</Link></li>
+              <li><Link to="/contact" className="hover:text-gray-400">Returns & Exchanges</Link></li>
             </ul>
           </div>
 
@@ -33,28 +69,35 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Policies</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/privacy-policy" className="hover:text-gray-400">Privacy Policy</Link></li>
-              <li><Link to="/terms-of-service" className="hover:text-gray-400">Terms of Service</Link></li>
-              <li><Link to="/shipping-policy" className="hover:text-gray-400">Shipping Policy</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Privacy Policy</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Terms of Service</Link></li>
+              <li><Link to="/about" className="hover:text-gray-400">Shipping Policy</Link></li>
             </ul>
           </div>
 
           {/* Column 4: Newsletter */}
           <div>
             <h3 className="text-lg font-bold mb-4">Stay Connected</h3>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full bg-gray-800 text-white p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
-              />
-              <button
-                type="submit"
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded w-full"
-              >
-                Subscribe
-              </button>
-            </form>
+            {!subscribed ? (
+              <form className="space-y-4" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-gray-800 text-white p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded w-full"
+                >
+                  Subscribe
+                </button>
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+              </form>
+            ) : (
+              <p className="text-green-500 text-sm">You are subscribed!</p>
+            )}
             <div className="flex space-x-4 mt-6">
               <a href="https://facebook.com" className="text-xl hover:text-gray-400" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook text-3xl text-blue-400"></i>
@@ -80,4 +123,4 @@ const Footer = () => {
   );
 };
 
-export default Footer
+export default Footer;

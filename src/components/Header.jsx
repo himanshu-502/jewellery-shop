@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCartWishlist } from "./CartWishlistContext";
 import logo from "../assets/icon.png";
 import { HiOutlineUserCircle } from "react-icons/hi";
@@ -11,15 +11,19 @@ import { ImCancelCircle } from "react-icons/im";
 import "../index.css"
 import { IoSearch } from "react-icons/io5";
 import mob from "../assets/mobiledrop.webp"
-import { useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { collections } from "./DataSet";
+import { useUserProfile } from "./UserProfileContext";
 
 const options = collections.map((item) => item.label.toLowerCase());
 const Header = () => {
+  
   let phrase=""
   const navigate=useNavigate()
+  
   const[search,setsearch]=useState("")
+  const { userProfile } = useUserProfile();
+
   const handlechange=(e)=>{
      setsearch(e.target.value)
   }
@@ -46,11 +50,14 @@ const Header = () => {
       phrase=""
     }
   };
+
   const[toggle,settoggle]=useState(false)
+  
   const sidemenu=()=>{
     console.log("HII")
     settoggle(!toggle)
   }
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const handleMenuToggle = () => {
@@ -59,7 +66,6 @@ const Header = () => {
   };
 
   const [isHovered, setIsHovered] = useState(false);
-
   const { cart} = useCartWishlist();
   const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
   
@@ -69,8 +75,15 @@ const Header = () => {
     setIsVisible(false);
   };  
 
+  const handleIconClick = () => {
+    if (!userProfile) {
+      navigate("/signup");
+    } 
+  };
 
-  return (<>
+
+  return (
+  <>
     
     <header className="fixed shadow-md w-full  h-auto md:h-40vh px-2 md:px-4 z-50 bg-pink-100">
   
@@ -152,9 +165,9 @@ const Header = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <Link to="/account">
-              <HiOutlineUserCircle />
-            </Link>
+            <div onClick={handleIconClick}>
+              <HiOutlineUserCircle className="cursor-pointer" />
+            </div>
 
             {isHovered && (
               <div
@@ -162,15 +175,19 @@ const Header = () => {
                   isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"
                 }`}
               >
-                <h3 className="text-lg font-bold text-gray-800 mb-2">User Info</h3>
-                <p className="text-sm text-gray-600">John Doe</p>
-                <p className="text-sm text-gray-600">johndoe@example.com</p>
-                <button
-                  className="mt-3 w-full bg-red-400 text-white py-2 px-3 rounded hover:bg-red-600 transition duration-200"
-                  onClick={() => console.log("Log Out")}
-                >
-                  Log Out
-                </button>
+                {userProfile ? (
+                  <>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">User Info</h3>
+                    <p className="text-sm text-gray-600">
+                      {userProfile.firstName} {userProfile.lastName}
+                    </p>
+                    <p className="text-sm text-gray-600">{userProfile.email}</p>
+                  </>
+                  ) : (
+                    <p className="text-sm text-gray-600">
+                       Click on the icon to Login/Signup.
+                    </p>
+                )}
               </div>
             )}
           </div>

@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCartWishlist } from "./CartWishlistContext";
+import { useUserProfile } from "./UserProfileContext";
 import "../styles/Cart.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cart, addToCart, removeFromCart } = useCartWishlist();
+  const { cart, addToCart, removeFromCart, clearCart } = useCartWishlist(); 
+  const { userProfile } = useUserProfile(); 
+  const [showModal, setShowModal] = useState(false);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const navigate = useNavigate();
 
-  const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price.toString().replace(/,/g, "")) * item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (total, item) =>
+      total + parseFloat(item.price.toString().replace(/,/g, "")) * item.quantity,
+    0
+  );
+
+  const handlePayNow = () => {
+    if (userProfile) {
+      clearCart(); 
+      setShowOrderModal(true);
+    } else {
+      setShowModal(true); 
+    }
+  };
+
+  const handleLoginRedirect = () => {
+    setShowModal(false);
+    navigate("/login"); 
+  };
 
   return (
     <div className="cart-container mt-10">
       <h2>Your Cart</h2>
+
       {cart.length === 0 ? (
         <p className="empty-cart">Your cart is empty.</p>
       ) : (
@@ -65,8 +89,58 @@ function Cart() {
           </ul>
           <div className="cart-total">
             <h3>Total Price: ${totalPrice.toLocaleString()}</h3>
+            <button
+              className="pay-now-btn bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 mt-4"
+              onClick={handlePayNow}
+            >
+              Pay Now
+            </button>
           </div>
         </>
+      )}
+
+      {/* Modal for login */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content bg-white p-6 rounded shadow-lg">
+            <h2 className="text-lg font-bold mb-4">Please Login</h2>
+            <p className="text-gray-600 mb-4">
+              You need to be logged in to place your order.
+            </p>
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
+              onClick={handleLoginRedirect}
+            >
+              Login
+            </button>
+            <button
+              className="ml-4 text-gray-600 hover:text-gray-800"
+              onClick={() => setShowModal(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal for order placed */}
+      {showOrderModal && (
+        <div className="modal-overlay">
+          <div className="modal-content bg-white p-6 rounded shadow-lg">
+            <h2 className="text-lg font-bold mb-4 text-green-600">
+              Your order has been placed!
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Thank you for shopping with us. Your order will be delivered soon.
+            </p>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200"
+              onClick={() => setShowOrderModal(false)}
+            >
+              OK
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

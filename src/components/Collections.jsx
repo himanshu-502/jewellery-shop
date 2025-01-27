@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/index.css";
 import { useParams } from "react-router-dom";
 import ProductCard from "./ProductCard.jsx";
-import { products } from "./DataSet.jsx";
-import image from "../assets/earings.webp";
+import { products, collections } from "./DataSet.jsx";
 
 const Collections = () => {
   
@@ -16,11 +15,16 @@ const Collections = () => {
   const [filteredProducts, setFilteredProducts] = useState(
     products.filter((product) => product.name.includes(collectionName))
   );
+  const collectionDetails = collections.find(item => item.label === collectionName);
+  const [image, setImage] = useState(collectionDetails.image);
 
   useEffect(() => {
     const newFilteredProducts = products.filter((product) =>
       product.name.includes(collectionName)
   );
+  const newCollectionDetails = collections.find(item => item.label === collectionName);
+  const newImage = newCollectionDetails.image;
+  setImage(newImage);
   setFilteredProducts(newFilteredProducts);
   setSortOption("best-selling");
 }, [collectionName]);

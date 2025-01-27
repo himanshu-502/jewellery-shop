@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import AboutPage from "./components/AboutPage.jsx"
 import ContactPage from "./components/ContactPage.jsx"
-import Account from "./components/Account.jsx";
+import SignUp from "./components/SignUp.jsx";
 import Login from "./components/Login.jsx";
 import Collections from "./components/Collections.jsx";
 import Menu from "./components/ProductDesc.jsx";
@@ -17,15 +17,17 @@ import Wishlist from "./components/Wishlist.jsx";
 import "./index.css"; 
 import HomePage from "./components/HomePage.jsx";
 import Layout from "./components/Layout.jsx";
-import { CartWishlistProvider } from "./components/CartWishlistContext.jsx";
+import { CartWishlistProvider } from "./components/CartWishlistContext.jsx"
+import { UserProfileProvider } from "./components/UserProfileContext.jsx";
 import BlogRead from "./components/BlogRead.jsx";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<HomePage />} />
       <Route path="about" element={<AboutPage />} />
       <Route path="contact" element={<ContactPage />} />
-      <Route path="account" element={<Account />} />
+      <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
       <Route path="collections/:collectionName" element={<Collections />} />
       <Route path="menu/:productId" element={<Menu />} />
@@ -39,7 +41,9 @@ const router = createBrowserRouter(
   )
 );
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <CartWishlistProvider>
-    <RouterProvider router={router} />
+  <UserProfileProvider>
+    <CartWishlistProvider>
+      <RouterProvider router={router} />
     </CartWishlistProvider>
+  </UserProfileProvider>
 );
