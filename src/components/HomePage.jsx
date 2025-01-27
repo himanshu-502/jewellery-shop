@@ -5,6 +5,8 @@ import BlogCard from "./BlogCard";
 import LocationCard from "./LocationCard";
 import Slider from "./CollectionSlider.jsx";
 import "../styles/style.css";
+import Marquee from "react-fast-marquee";
+// import border from "../assets/border_svg.png"
 import { locations, blogs, limitedStocks, trendingProducts, limitedStockPeriod } from "./DataSet.jsx";
 
   
@@ -31,16 +33,63 @@ const HomePage = () => {
       .toString()
       .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
+
+  // to handle close button
+   const [isVisible, setIsVisible] = useState(true);
+  
+    const handleClose = () => {
+      setIsVisible(false);
+    };  
+  
+  
   return (
     <>
-    <div className="mt-6 flex flex-col  gap-10">
-      <div className=" font-serif  text-center mt-5 mb-0 md:mb-3 text-4xl font">What's on <span className="text-red-400 font-semibold">Your Mind!! </span></div>
+
+<div
+              className={`relative transition-opacity duration-500 ease-out ${
+                isVisible ? "opacity-100" : "opacity-0"
+              } ${isVisible ? "h-auto" : "h-0 overflow-hidden"}`}
+              style={{ background: "#610C63" }}
+            >
+              <div className="relative">
+                {/* Close Button */}
+                <button
+                  onClick={handleClose}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black-500 focus:outline-none z-10"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L12 10.586l6.293-6.293a1 1 0 111.414 1.414L13.414 12l6.293 6.293a1 1 0 01-1.414 1.414L12 13.414l-6.293 6.293a1 1 0 01-1.414-1.414L10.586 12 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+            
+                {/* Marquee Content */}
+                <div className="pl-8">
+                  <Marquee speed={35}>
+                    Discover our wide range of jewelry collections including gold, diamond, and silver!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    50% off on Making Charges&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Free shipping on Pre-Paid Orders&nbsp;&nbsp;&nbsp;&nbsp;
+                  </Marquee>
+                </div>
+              </div>
+            </div>
+    {/* body start */}
+    <div className="mt-6 flex flex-col  gap-10 banner">
+      <div className=" font-serif  text-center mt-5 mb-0 md:mb-3 text-4xl font banner-title1">What's on <span className="text-400 font-semibold banner-title2">Your Mind!! </span></div>
         <Slider/>
     </div>
   
     {/*Trending*/}
     <div>
-      <div className=" bg-gray-100 text-center mt-5 mb-0 md:mb-3 text-3xl  font-serif ">Trending <span className="text-red-400 font-semibold">Jewellery</span></div>
+      <div className="  text-center mt-5 mb-0 md:mb-3 text-3xl  font-serif banner banner-title1">Trending <span className="text-red-400 font-semibold banner-title2">Jewellery</span></div>
       <div className="product-list">
         {trendingProducts.map((product, index) => (
           <ProductCard key={index} product={product} />
@@ -51,8 +100,8 @@ const HomePage = () => {
     {/*Limited*/}
     { timeLeft > 0 && ( 
       <div>
-      <div className="text-center mt-7 mb-0 md:mb-2 text-4xl  font-serif ">Limited <span >Period Offer</span></div>
-      <div className="text-[20px] mt-2 mb-3 p-1  text-center bg-yellow-100 text-red-500 ">
+      <div className="text-center mt-7 mb-0 md:mb-2 text-4xl  font-serif banner-title1">Limited <span >Period Offer</span></div>
+      <div className="text-[20px] mt-2 mb-3 p-1  text-center limited-countdown ">
       Ends in :
         {  timeLeft > 0 ? formatTime(timeLeft) : "Time's up!"}
       </div>
@@ -65,8 +114,8 @@ const HomePage = () => {
     )}
 
  {/*Blog Sections*/}
-    <div className="blog-list">
-      <h2 className="blog-list-title text-4x">Latest Blogs</h2>
+    <div className="blog-list banner">
+      <h2 className="blog-list-title text-4x banner-title1">Latest Blogs</h2>
       <div className="blog-list-grid">
         {blogs.map((blog, index) => (
           <BlogCard key={index} blog={blog} />
@@ -75,8 +124,8 @@ const HomePage = () => {
     </div>
 
  {/*Location Sections*/}
- <div className="our-locations">
-      <h2 className="locations-title">Our Locations</h2>
+ <div className="our-locations banner">
+      <h2 className="locations-title banner-title1">Our Locations</h2>
       <div className="locations-grid">
         {locations.map((location, index) => (
           <LocationCard key={index} location={location} />

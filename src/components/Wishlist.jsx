@@ -22,7 +22,7 @@ function Wishlist() {
                 <Link to={`/menu/${item.id}`}>
                   <h3 className="cart-item-name">{item.name}</h3>
                 </Link>
-                <p className="cart-item-price">Price: ${item.price}</p>
+                <p className="cart-item-price">Price: ₹{item.price}</p>
                 <button
                   className="wishlist-remove-btn"
                   onClick={() => removeFromWishlist(item.id)}

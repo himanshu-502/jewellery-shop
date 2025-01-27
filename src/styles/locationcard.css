@@ -27,14 +27,33 @@
   
   .get-directions {
     font-size: 1rem;
-    color: #e63946;
+    color: rgb(120, 29, 66);
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
     margin-top: 10px;
+
+    
+    background-position: 140px 5px;
+    text-align: left;
+    transition: background-position 0.5s ease, padding-right 0.5s ease;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    padding: 1px 7px 1px 7px;
   }
   
-  .get-directions:hover {
-    text-decoration: underline;
+  /* .get-directions:hover {
+    transition: background-position 0.5s ease-out, padding-left 0.5s ease-out;
+    background-position: 113px 5px;
+    padding-left: 0;
+    color: #C65D7B; 
+
+  } */
+  .location-card:hover .get-directions{
+    transition: background-position 0.5s ease-out, padding-left 0.5s ease-out;
+    background-position: 113px 5px;
+    padding-left: 0;
+    color: #C65D7B; /* Changes color on hover of the card */
+    transform: translateY(-5px);
   }
-  

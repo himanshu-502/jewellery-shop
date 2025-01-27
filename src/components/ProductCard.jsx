@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
       // Start the slideshow on hover
       interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % product.image.length);
-      }, 2100); // Change image every 1 second
+      }, 2000); // Change image every 1 second
     } else {
       // Reset to the main image when not hovered
       setCurrentIndex(0);
@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
         <img src={currentImage} alt={product.title} className="product-image" />
       </Link>
       <h3 className="product-title">{product.name}</h3>
-      <p className="product-price">Rs. {product.price.toLocaleString()}</p>
+      <p className="product-price">₹ {product.price.toLocaleString()}</p>
       <div><CartWishlist productId = {Number(product.id)} /></div>
       
       {/* <Link to={`/menu/${product.id}`} onClick={handleImageClick}>

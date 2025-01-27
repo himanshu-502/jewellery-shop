@@ -1,6 +1,7 @@
 /* Slider Container */
 .slider {
   padding: 20px;
+  /* padding-top: 0px; */
   text-align: center;
   width: 80vw; /* Fixed width for the main div */
   max-width: 1200px; /* Maximum width for larger screens */
@@ -13,6 +14,10 @@
   margin-bottom: 16px;
   font-family: serif;
   color: #333;
+}
+/* slider container */
+.slider-container{
+  padding-top: 10px;
 }
 
 /* Slider Wrapper */
@@ -42,7 +47,7 @@
 }
 
 .slider-arrow svg {
-  fill: #333;
+  fill: #610C63;
   width: 24px;
   height: 24px;
 }
@@ -77,7 +82,7 @@
   aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: fill;
-  border: 2px solid #ccc;
+  border: 2px solid #610C63;
   padding: 5px;
   background-color: white;
   transition: transform 0.3s ease;
@@ -88,9 +93,10 @@
 }
 
 .image-wrapper p {
-  margin-top: 8px;
+  /* margin-top: 8px; */
+  font-family: FontRegular;
   font-size: 1rem;
-  color: #333;
+  color: #810955;
 }
 
 /* Responsiveness */

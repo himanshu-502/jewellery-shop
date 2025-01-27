@@ -5,6 +5,7 @@
     overflow: hidden;
     transition: transform 0.2s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
   }
   
   .blog-card:hover {
@@ -19,7 +20,10 @@
   }
   
   .blog-content {
+    display: flex;
+    flex-direction: column;
     padding: 16px;
+    flex-grow: 1;
   }
   
   .blog-date {
@@ -33,15 +37,39 @@
     margin: 0 0 16px;
     color: #333;
   }
-  
+  .blog-footer {
+    margin-top: auto; /* Ensures footer stays at the bottom */
+    display: flex;
+    justify-content: flex-end;/* Aligns the button to the right */
+  }
   .read-more {
     font-size: 1rem;
-    color: #e63946;
+    color: rgb(120, 29, 66);
     text-decoration: none;
     font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  read-more {
+    background-position: 140px 5px;
+    text-align: left;
+    transition: background-position 0.5s ease, padding-right 0.5s ease;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    padding: 1px 7px 1px 7px;
   }
   
-  .read-more:hover {
-    text-decoration: underline;
+  /* read-more:hover {
+    transition: background-position 0.5s ease-out, padding-left 0.5s ease-out;
+    background-position: 113px 5px;
+    padding-left: 0;
+  } */
+  .blog-card:hover .read-more {
+    transition: background-position 0.5s ease-out, padding-left 0.5s ease-out;
+    background-position: 113px 5px;
+    padding-left: 0;
+    color: #C65D7B; /* Changes color on hover of the card */
   }
   

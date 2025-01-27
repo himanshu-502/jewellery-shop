@@ -49,7 +49,7 @@ function Cart() {
                   <Link to={`/menu/${item.id}`}>
                     <h3 className="cart-item-name">{item.name}</h3>
                   </Link>
-                  <p className="cart-item-price">Price: ${item.price}</p>
+                  <p className="cart-item-price">Price: ₹{item.price}</p>
                   <div className="cart-item-quantity">
                     <button
                       className="quantity-btn"
@@ -88,7 +88,7 @@ function Cart() {
             ))}
           </ul>
           <div className="cart-total">
-            <h3>Total Price: ${totalPrice.toLocaleString()}</h3>
+            <h3>Total Price: ₹{totalPrice.toLocaleString()}</h3>
             <button
               className="pay-now-btn bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 mt-4"
               onClick={handlePayNow}
