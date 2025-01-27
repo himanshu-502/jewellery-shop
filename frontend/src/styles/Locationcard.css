@@ -1,0 +1,52 @@
+.location-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+}
+
+.location-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.location-address,
+.location-phone {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+.get-directions {
+  font-size: 1rem;
+  color: rgb(120, 29, 66);
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+
+
+  background-position: 140px 5px;
+  text-align: left;
+  transition: background-position 0.5s ease, padding-right 0.5s ease;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  padding: 1px 7px 1px 7px;
+}
+
+.location-card:hover .get-directions {
+  transition: background-position 0.5s ease-out, padding-left 0.5s ease-out;
+  background-position: 113px 5px;
+  padding-left: 0;
+  color: #C65D7B;
+  transform: translateY(-5px);
+}

@@ -1,0 +1,73 @@
+.logo {
+    height: 5rem;
+}
+
+.logoname {
+    font-family: FontRegular;
+    font-size: 2rem;
+    color: rgb(120, 29, 66);
+}
+
+.searchbox {
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    width: 20rem;
+    height: 2rem;
+}
+
+.icon_search {
+    background-color: white;
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    color: rgb(120, 29, 66);
+}
+
+.icon_search:hover {
+    color: #C65D7B;
+
+}
+
+.menu-item {
+    color: rgb(120, 29, 66);
+}
+
+.menu-item:hover {
+    color: #C65D7B;
+}
+
+.icon_heart :hover {
+    height: 1rem;
+    width: 1rem;
+
+}
+
+.jewel_type {
+    margin-top: 0;
+}
+
+.rfm-marquee-container {
+    background-color: #610C63;
+    color: #FFF9D7;
+    margin-bottom: 0.5rem;
+}
+
+.banner {
+    background-color: #FFF9D760;
+}
+
+.banner-title1 {
+    color: #610C63;
+}
+
+.banner-title2 {
+    color: #C65D7B;
+}
+
+.limited-countdown {
+    background-color: #EE81B340;
+    color: rgb(120, 29, 66);
+}
