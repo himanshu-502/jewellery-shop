@@ -105,7 +105,7 @@ const Header = () => {
                   value={search}
                   onChange={handlechange}
 
-                /><FiSearch className="icon_search transition duration-300" onClick={handleSearch} />
+                /><FiSearch className="icon_search p-2 transition duration-300" onClick={handleSearch} />
               </div>
             </div>
 
@@ -142,7 +142,7 @@ const Header = () => {
 
               <div className="rgb(120, 29, 66)  menu-item">
                 <Link to="/wishlist">
-                  <FaHeart width={24} height={24} />
+                  <FaHeart size={24} />
                 </Link>
               </div>
               <div
