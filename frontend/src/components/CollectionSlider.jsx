@@ -32,7 +32,7 @@ const Slider = () => {
         <div className="slider-container">
           {collections.slice(currentIndex, currentIndex + visibleItems).map((item) => (
             <Link
-              to={`/collections/${item.label}?image=${encodeURIComponent(item.image)}}`}
+              to={`/collections/${item.label}`}
               key={item.id} className="image-wrapper">
               <img src={item.image} alt={item.label} className="hover:scale-110" />
               <p>{item.label}</p>

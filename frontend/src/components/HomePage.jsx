@@ -85,7 +85,7 @@ const HomePage = () => {
 
       {/*Trending*/}
       <div>
-        <div className="  text-center mt-5 mb-0 md:mb-3 text-3xl  font-serif banner banner-title1">Trending <span className="text-red-400 font-semibold banner-title2">Jewellery</span></div>
+        <div className="  text-center pt-8 pb-0 mb-0  text-4xl  font-serif banner banner-title1">Trending <span >Jewellery</span></div>
         <div className="product-list">
           {trendingProducts.map((product, index) => (
             <ProductCard key={index} product={product} />

@@ -108,7 +108,7 @@ const ProductDesc = () => {
 
   return (
     <div className="p-4 mt-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg gap-6">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white shadow-lg gap-6" style = {{borderRadius: '25px',}}>
 
         {productDisplay.image.length > 1 && (
           <div className="w-full flex flex-wrap md:w-1/6 md:flex-col gap-3 p-4">
