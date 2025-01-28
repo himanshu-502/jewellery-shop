@@ -1,12 +1,11 @@
 .product-card {
-  position: relative; /* Important for the icon to be positioned */
-  /* display: flex;
+  /* position: relative;  */
+  /* flex: 1 1 250px; 
+  justify-content: space-around;
+  margin: 8px; */
   flex-direction: column;
   align-items: center;
-  text-align: center;   */
-  flex: 1 1 250px; 
-  justify-content: space-around;
-  margin: 8px;
+  text-align: center; 
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -76,22 +75,22 @@
 .product-card:hover .product-price {
   color: #C65D7B;
 }
-.button-container {
-  display: flex;                /* Align buttons side by side */
-  justify-content: center;      /* Center the buttons horizontally */
-  align-items: center;          /* Align buttons vertically */
-  gap: 20px;                    /* Space between the buttons */
-}
+/* .button-container {
+  display: flex;                
+  justify-content: center;      
+  align-items: center;          
+  gap: 20px;                   
+} */
 add-cart-btn {
   background-color: #610C63 !important;
   color: #FFF9D7;
 }
 
 .wishlist-btn {
-  position: absolute;
-  bottom: 30px; /* Adjust this value as per design */
-  right: 10px; /* Adjust this value for spacing */
-  z-index: 10;
+  /* position: absolute;
+  bottom: 30px; 
+  right: 10px; 
+  z-index: 10; */
   background-color: #fff !important;
   padding: 0px !important;
   justify-content: center;
