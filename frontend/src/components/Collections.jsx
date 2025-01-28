@@ -60,11 +60,11 @@ const Collections = () => {
       {/* Product Container */}
       <div className="container mx-auto p-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-          <input
+          {/* <input
             type="search"
             placeholder={`Search products`}
             className="border border-gray-300 p-2 rounded w-full md:w-1/3 mb-4 md:mb-0"
-          />
+          /> */}
           <select
             className="border border-gray-300 p-2 rounded w-full md:w-1/5"
             onChange={(e) => handleSortChange(e.target.value)}

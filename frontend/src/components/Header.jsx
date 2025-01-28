@@ -100,7 +100,7 @@ const Header = () => {
               <div className="hidden md:flex items-center border-gray-300 rounded-md overflow-hidden search1 ">
                 <input
                   type="text"
-                  placeholder="Search for Jewellery..."
+                  placeholder="Search for Collections..."
                   className="px-2 py-1 focus:outline-none search "
                   value={search}
                   onChange={handlechange}
