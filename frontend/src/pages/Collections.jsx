@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Index.css";
 import { useParams } from "react-router-dom";
-import ProductCard from "./ProductCard.jsx";
+import ProductCard from "../components/ProductCard.jsx";
 import { products, collections } from "../data/DataSet.js";
 
 const Collections = () => {

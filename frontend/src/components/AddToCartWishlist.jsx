@@ -1,5 +1,5 @@
 import React from "react";
-import { useCartWishlist } from "./CartWishlistContext.jsx";
+import { useCartWishlist } from "../context/CartWishlistContext.jsx";
 import { products } from "../data/DataSet.js";
 import "../styles/Productcard.css";
 

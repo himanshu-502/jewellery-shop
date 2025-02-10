@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useCartWishlist } from "./CartWishlistContext";
-import { useUserProfile } from "./UserProfileContext";
+import { useCartWishlist } from "../context/CartWishlistContext";
+import { useUserProfile } from "../context/UserProfileContext";
 import "../styles/Cart.css";
 import { Link, useNavigate } from "react-router-dom";
 

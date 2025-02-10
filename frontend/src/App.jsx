@@ -6,20 +6,20 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import AboutPage from "./components/AboutPage.jsx"
-import ContactPage from "./components/ContactPage.jsx"
-import SignUp from "./components/SignUp.jsx";
-import Login from "./components/Login.jsx";
-import Collections from "./components/Collections.jsx";
-import ProductDesc from "./components/ProductDesc.jsx";
-import Cart from "./components/Cart.jsx";
-import Wishlist from "./components/Wishlist.jsx";
+import AboutPage from "./pages/AboutPage.jsx"
+import ContactPage from "./pages/ContactPage.jsx"
+import SignUp from "./pages/SignUp.jsx";
+import Login from "./pages/Login.jsx";
+import Collections from "./pages/Collections.jsx";
+import ProductDesc from "./pages/ProductDesc.jsx";
+import Cart from "./pages/Cart.jsx";
+import Wishlist from "./pages/Wishlist.jsx";
 import "./index.css";
-import HomePage from "./components/HomePage.jsx";
-import Layout from "./components/Layout.jsx";
-import { CartWishlistProvider } from "./components/CartWishlistContext.jsx"
-import { UserProfileProvider } from "./components/UserProfileContext.jsx";
-import BlogRead from "./components/BlogRead.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Layout from "./pages/Layout.jsx";
+import { CartWishlistProvider } from "./context/CartWishlistContext.jsx"
+import { UserProfileProvider } from "./context/UserProfileContext.jsx";
+import BlogRead from "./pages/BlogRead.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCartWishlist } from "./CartWishlistContext";
+import { useCartWishlist } from "../context/CartWishlistContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
 import { RiMenu3Fill } from "react-icons/ri";
@@ -14,7 +14,7 @@ import mob from "../assets/mobiledrop.webp"
 import { collections } from "../data/DataSet";
 import logo2 from "../assets/eagleview_jewelogo.png";
 import "../fonts/fonts.css";
-import { useUserProfile } from "./UserProfileContext";
+import { useUserProfile } from "../context/UserProfileContext";
 
 const options = collections.map((item) => item.label.toLowerCase());
 const Header = () => {

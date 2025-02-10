@@ -4,7 +4,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import image from "../assets/account.png"
 import { userDetails } from "../data/DataSet";
-import { useUserProfile } from "./UserProfileContext";
+import { useUserProfile } from "../context/UserProfileContext";
 
 const Login = () => {
   const navigate = useNavigate();

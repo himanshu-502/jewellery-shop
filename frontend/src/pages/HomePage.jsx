@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import ProductCard from "./ProductCard";
-import BlogCard from "./BlogCard";
-import LocationCard from "./LocationCard";
-import Slider from "./CollectionSlider.jsx";
+import ProductCard from "../components/ProductCard.jsx";
+import BlogCard from "../components/BlogCard.jsx";
+import LocationCard from "../components/LocationCard.jsx";
+import Slider from "../components/CollectionSlider.jsx";
 import "../styles/Style.css";
 import Marquee from "react-fast-marquee";
 import { locations, blogs, limitedStocks, trendingProducts, limitedStockPeriod } from "../data/DataSet.js";

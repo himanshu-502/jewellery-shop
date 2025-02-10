@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../styles/Magnifier.css";
 import { products, features, assurances } from '../data/DataSet.js';
-import Recommend from "./Recommend.jsx";
-import CartWishlist from "./AddToCartWishlist.jsx";
+import Recommend from "../components/Recommend.jsx";
+import CartWishlist from "../components/AddToCartWishlist.jsx";
 
 const ProductDesc = () => {
   const { productId } = useParams();
