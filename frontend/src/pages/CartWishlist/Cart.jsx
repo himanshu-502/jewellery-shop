@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useCartWishlist } from "../context/CartWishlistContext";
-import { useUserProfile } from "../context/UserProfileContext";
-import "../styles/Cart.css";
+import "../../styles/Cart.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useCartWishlistStore } from "../../store/CartWishlistStore";
+import { useUserProfileStore } from "../../store/UserProfile";
 
 function Cart() {
-  const { cart, addToCart, removeFromCart, clearCart } = useCartWishlist();
-  const { userProfile } = useUserProfile();
+  const { cart, addToCart, removeFromCart, clearCart } = useCartWishlistStore();
+  const { userProfile } = useUserProfileStore();
   const [showModal, setShowModal] = useState(false);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const navigate = useNavigate();

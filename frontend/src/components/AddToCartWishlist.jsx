@@ -1,10 +1,18 @@
 import React from "react";
-import { useCartWishlist } from "../context/CartWishlistContext.jsx";
+import { useCartWishlistStore } from "../store/CartWishlistStore";
 import { products } from "../data/DataSet.js";
 import "../styles/Productcard.css";
 
 const CartWishlist = ({ productId }) => {
-  const { cart, addToCart, addToWishlist, wishlist, removeFromCart, removeFromWishlist } = useCartWishlist();
+  const { 
+    cart, 
+    addToCart, 
+    addToWishlist, 
+    wishlist, 
+    removeFromCart, 
+    removeFromWishlist 
+  } = useCartWishlistStore();
+  // const { cart, addToCart, addToWishlist, wishlist, removeFromCart, removeFromWishlist } = useCartWishlist();
   const productInCart = cart.find(item => item.id === Number(productId)) || false;
   const productInWishlist = wishlist.find(item => item.id === Number(productId)) || false;
   const currentProduct = products.find(item => item.id === Number(productId));

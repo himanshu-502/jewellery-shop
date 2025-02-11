@@ -1,10 +1,10 @@
 import React from "react";
-import { useCartWishlist } from "../context/CartWishlistContext";
-import "../styles/Cart.css";
 import { Link } from "react-router-dom";
+import "../../styles/Cart.css";
+import { useCartWishlistStore } from "../../store/CartWishlistStore";
 
 function Wishlist() {
-  const { wishlist, removeFromWishlist } = useCartWishlist();
+  const { wishlist, removeFromWishlist } = useCartWishlistStore();
 
   return (
     <div className="cart-container mt-10">

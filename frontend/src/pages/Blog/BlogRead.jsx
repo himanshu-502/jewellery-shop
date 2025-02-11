@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import about1 from "../assets/about1.webp"
-import { blogs } from '../data/DataSet'
+import about1 from "../../assets/about1.webp"
+import { blogs } from '../../data/DataSet'
 
 function BlogRead() {
   const { id } = useParams()

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import loginSignupImage from "../assets/login-animation.gif";
+import loginSignupImage from "../../assets/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
-import image from "../assets/account.png"
+import image from "../../assets/account.png"
 
 
 const SignUp = () => {

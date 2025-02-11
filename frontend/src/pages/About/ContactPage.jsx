@@ -1,7 +1,7 @@
 import React from 'react'
-import contact1 from "../assets/contact1.jpg"
-import LocationCard from "../components/LocationCard";
-import { locations } from '../data/DataSet';
+import contact1 from "../../assets/contact1.jpg"
+import LocationCard from "../../components/LocationCard";
+import { locations } from '../../data/DataSet';
 
 
 function ContactPage() {

@@ -1,7 +1,7 @@
 import React from 'react'
-import image from "../assets/aboutbanner.jpg"
-import about1 from "../assets/about1.webp"
-import { aboutDesc } from "../data/DataSet";
+import image from "../../assets/aboutbanner.jpg"
+import about1 from "../../assets/about1.webp"
+import { aboutDesc } from "../../data/DataSet";
 
 function AboutPage() {
 

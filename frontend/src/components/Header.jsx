@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCartWishlist } from "../context/CartWishlistContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
 import { RiMenu3Fill } from "react-icons/ri";
@@ -14,16 +13,17 @@ import mob from "../assets/mobiledrop.webp"
 import { collections } from "../data/DataSet";
 import logo2 from "../assets/eagleview_jewelogo.png";
 import "../fonts/fonts.css";
-import { useUserProfile } from "../context/UserProfileContext";
+import { useCartWishlistStore } from "../store/CartWishlistStore";
+import { useUserProfileStore } from "../store/UserProfile";
 
-const options = collections.map((item) => item.label.toLowerCase());
 const Header = () => {
 
+  const options = collections.map((item) => item.label.toLowerCase());
   let phrase = ""
   const navigate = useNavigate()
 
   const [search, setsearch] = useState("")
-  const { userProfile } = useUserProfile();
+  const { userProfile } = useUserProfileStore();
 
   const handlechange = (e) => {
     setsearch(e.target.value)
@@ -67,12 +67,16 @@ const Header = () => {
   };
 
   const [isHovered, setIsHovered] = useState(false);
-  const { cart } = useCartWishlist();
+  // const { cart } = useCartWishlist();
+  const { cart } = useCartWishlistStore();
   const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleIconClick = () => {
     if (!userProfile) {
       navigate("/signup");
+    }
+    else {
+      navigate("/user/accountsettings");
     }
   };
 
@@ -166,6 +170,7 @@ const Header = () => {
                           {userProfile.firstName} {userProfile.lastName}
                         </p>
                         <p className="text-sm text-gray-600">{userProfile.email}</p>
+                        <p className="text-sm text-gray-600">{userProfile.phone}</p>
                       </>
                     ) : (
                       <p className="text-sm text-gray-600">

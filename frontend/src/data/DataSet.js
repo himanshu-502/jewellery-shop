@@ -50,83 +50,21 @@ export const userDetails = [
     lastName: "Bansal",
     email: "abcd@gmail.com",
     password: "abcd",
+    phone: "1212121212",
   },
   {
     firstName: "Aanvi",
     lastName: "Varma",
     email: "abc@gmail.com",
     password: "abcd",
+    phone: "2323232323",
   },
   {
     firstName: "Chirag",
     lastName: "Gupta",
     email: "ab@gmail.com",
     passwrod: "abcd",
-  },
-];
-
-export const trendingProducts = [
-  {
-    id: 32,
-    name: "Ritika Lovely Diamond Earings",
-    price: "28,429.00",
-    image: [trend3, trend4],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 33,
-    image: [trend1, trend2],
-    name: 'Adya Classic Gold Bracelet',
-    price: 64240,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 34,
-    image: [trend2, trend3],
-    name: 'Shubhi Pleasing  Gold Earings',
-    price: 21635,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 35,
-    image: [trend4, trend1],
-    name: 'Brezza Red & White Diamond Earings',
-    price: 47663,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-
-];
-
-
-
-export const limitedStocks = [
-  {
-    id: 30,
-    name: "Harshika Stunning Gold Necklace",
-    price: "18,754.00",
-    image: [gold3],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 32,
-    name: "Ritika Lovely Diamond Necklace",
-    price: "28,429.00",
-    image: [diamond3],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 16,
-    name: "Harshika Stunning Silver Wedding Ring",
-    price: "18,754.00",
-    image: [silver1],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 35,
-    image: [trend1, trend3],
-    name: 'Brezza Red & White Diamond Earings',
-    price: 47663,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    phone: "3434343434",
   },
 ];
 
@@ -155,17 +93,6 @@ export const locations = [
     phone: '+91 84482 25844',
     directionsLink: '#',
   },
-];
-
-export const collections = [
-  { id: 1, image: image1, label: "Bangles" },
-  { id: 2, image: image2, label: "Earings" },
-  { id: 3, image: image3, label: "Ring" },
-  { id: 4, image: image4, label: "Necklace" },
-  { id: 5, image: image, label: "Gold" },
-  { id: 6, image: diamond2, label: "Diamond" },
-  { id: 7, image: silver1, label: "Silver" },
-  { id: 8, image: banner, label: "Wedding" },
 ];
 
 export const aboutDesc = [
@@ -223,7 +150,16 @@ export const blogs = [
   },
 ];
 
-
+export const collections = [
+  { id: 1, image: image1, label: "Bangles" },
+  { id: 2, image: image2, label: "Earings" },
+  { id: 3, image: image3, label: "Ring" },
+  { id: 4, image: image4, label: "Necklace" },
+  { id: 5, image: image, label: "Gold" },
+  { id: 6, image: diamond2, label: "Diamond" },
+  { id: 7, image: silver1, label: "Silver" },
+  { id: 8, image: banner, label: "Wedding" },
+];
 
 export const features = [
   {
@@ -245,8 +181,6 @@ export const features = [
 
 ];
 
-
-
 export const assurances = [
 
   {
@@ -263,7 +197,83 @@ export const assurances = [
   },
 ];
 
+export const reviews = [
+  {
+    product_id: 1,
+    user_id: "abcd@gmail.com",
+    rating: 4,
+  },
+  {
+    product_id: 2, 
+    user_id: "abc@gmail.com",
+    rating: 5,
+    comment: "brilliant design",
+  },
 
+];
+
+export const trendingProducts = [
+  {
+    id: 32,
+    name: "Ritika Lovely Diamond Earings",
+    price: "28,429.00",
+    image: [trend3, trend4],
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 33,
+    image: [trend1, trend2],
+    name: 'Adya Classic Gold Bracelet',
+    price: 64240,
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 34,
+    image: [trend2, trend3],
+    name: 'Shubhi Pleasing  Gold Earings',
+    price: 21635,
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 35,
+    image: [trend4, trend1],
+    name: 'Brezza Red & White Diamond Earings',
+    price: 47663,
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+
+];
+
+export const limitedStocks = [
+  {
+    id: 30,
+    name: "Harshika Stunning Gold Necklace",
+    price: "18,754.00",
+    image: [gold3],
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 32,
+    name: "Ritika Lovely Diamond Necklace",
+    price: "28,429.00",
+    image: [diamond3],
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 16,
+    name: "Harshika Stunning Silver Wedding Ring",
+    price: "18,754.00",
+    image: [silver1],
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+  {
+    id: 35,
+    image: [trend1, trend3],
+    name: 'Brezza Red & White Diamond Earings',
+    price: 47663,
+    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+  },
+];
 
 export const products = [
   {
