@@ -2,32 +2,42 @@ import React, { useState, useEffect } from "react";
 import "../../styles/Index.css";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/ProductCard.jsx";
-import { products, collections } from "../../data/DataSet.js";
+import useProductStore from "../../store/ProductStore.js";
 
-const Collections = () => {
-
-  let { collectionName } = useParams();
+const Categories = () => {
+  
+  const {products, categories, fetchCategories, fetchProducts} = useProductStore();
+    useEffect(() => {
+      const fetchData = async () => {
+        await fetchProducts();
+        await fetchCategories();
+      };
+      fetchData();
+    }, []);
+  
+  let { categoryName } = useParams();
 
   const capitalizeFirstLetter = (str) => str ? str[0].toUpperCase() + str.slice(1) : "";
-  collectionName = capitalizeFirstLetter(collectionName);
+  categoryName = capitalizeFirstLetter(categoryName);
 
   const [sortOption, setSortOption] = useState("best-selling");
   const [filteredProducts, setFilteredProducts] = useState(
-    products.filter((product) => product.name.includes(collectionName))
+    products.filter(product =>
+      product.categories.some(cat => cat.category.name === categoryName)
+    )
   );
-  const collectionDetails = collections.find(item => item.label === collectionName);
-  const [image, setImage] = useState(collectionDetails.image);
+  const categoryDetails = categories.find(item => item.name === categoryName);
+  const [image, setImage] = useState(categoryDetails ? categoryDetails.imageBanner : "");
 
   useEffect(() => {
-    const newFilteredProducts = products.filter((product) =>
-      product.name.includes(collectionName)
+    const newFilteredProducts = products.filter(product =>
+      product.categories.some(cat => cat.category.name === categoryName)
     );
-    const newCollectionDetails = collections.find(item => item.label === collectionName);
-    const newImage = newCollectionDetails.image;
-    setImage(newImage);
+    const newCategoryDetails = categories.find(item => item.name === categoryName);
+    setImage(newCategoryDetails ? newCategoryDetails.imageBanner : "");
     setFilteredProducts(newFilteredProducts);
     setSortOption("best-selling");
-  }, [collectionName]);
+  }, [categoryName, products, categories]);
 
   const handleSortChange = (option) => {
     setSortOption(option);
@@ -49,11 +59,11 @@ const Collections = () => {
           <img
             className="h-[30vh] md:h-[50vh] md:w-[50vw] w-[100vw]"
             src={image}
-            alt={`${collectionName} Collection`}
+            alt={`${categoryName} category`}
           />
         </div>
         <div className="text-center m-auto text-3xl md:text-6xl font-bold font-serif">
-          {collectionName}
+          {categoryName}
         </div>
       </div>
 
@@ -86,4 +96,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default Categories;

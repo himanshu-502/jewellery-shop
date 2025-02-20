@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import "../../styles/Cart.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartWishlistStore } from "../../store/CartWishlistStore";
-import { useUserProfileStore } from "../../store/UserProfile";
+import useUserProfileStore from "../../store/UserProfileStore";
+import useOrderStore from "../../store/OrdersStore";
 
 function Cart() {
   const { cart, addToCart, removeFromCart, clearCart } = useCartWishlistStore();
-  const { userProfile } = useUserProfileStore();
+  const { isSignedIn, address } = useUserProfileStore();
+  const { placeOrder, orderError } = useOrderStore();
+  const [selectedAddress, setSelectedAddress] = useState(address[0] || "");
   const [showModal, setShowModal] = useState(false);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const navigate = useNavigate();
@@ -17,12 +20,26 @@ function Cart() {
     0
   );
 
-  const handlePayNow = () => {
-    if (userProfile) {
+  const handlePayNow = async () => {
+    if (!isSignedIn) {
+      setShowModal(true);
+      return;
+    }
+
+    if (!selectedAddress) {
+      alert("Please select an address before proceeding.");
+      return;
+    }
+    const orderData = {
+      items: cart.map(({ id, quantity, price }) => ({ productId: id, quantity, price })),
+      total: totalPrice,
+      address: selectedAddress,
+    };
+    console.log(orderData);
+    const success = await placeOrder(orderData);
+    if (success) {
       clearCart();
       setShowOrderModal(true);
-    } else {
-      setShowModal(true);
     }
   };
 
@@ -43,7 +60,7 @@ function Cart() {
             {cart.map((item) => (
               <li key={item.id} className="cart-item">
                 <Link to={`/menu/${item.id}`}>
-                  <img src={item.image[0]} alt={item.name} className="cart-item-image" />
+                  <img src={item.images[0]} alt={item.name} className="cart-item-image" />
                 </Link>
                 <div className="cart-item-details">
                   <Link to={`/menu/${item.id}`}>
@@ -56,13 +73,7 @@ function Cart() {
                       onClick={() => removeFromCart(item.id)}
                       aria-label="Decrease Quantity"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                         <path d="M19 13H5v-2h14v2z" />
                       </svg>
                     </button>
@@ -72,13 +83,7 @@ function Cart() {
                       onClick={() => addToCart(item)}
                       aria-label="Increase Quantity"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                         <path d="M19 11H13V5h-2v6H5v2h6v6h2v-6h6v-2z" />
                       </svg>
                     </button>
@@ -87,14 +92,27 @@ function Cart() {
               </li>
             ))}
           </ul>
+
           <div className="cart-total">
             <h3>Total Price: ₹{totalPrice.toLocaleString()}</h3>
-            <button
-              className="pay-now-btn  text-white py-2 px-4 rounded  transition duration-200 mt-4"
-              onClick={handlePayNow}
-            >
+            <div className="address-selection">
+              <label htmlFor="address">Select Address:</label>
+              <select
+                id="address"
+                value={selectedAddress}
+                onChange={(e) => setSelectedAddress(e.target.value)}
+              >
+                {address.map((addr, index) => (
+                  <option key={index} value={addr}>
+                    {addr}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className="pay-now-btn text-white py-2 px-4 rounded transition duration-200 mt-4" onClick={handlePayNow}>
               Pay Now
             </button>
+            {orderError && <p className="error-message">{orderError}</p>}
           </div>
         </>
       )}
@@ -104,19 +122,11 @@ function Cart() {
         <div className="modal-overlay">
           <div className="modal-content bg-white p-6 rounded shadow-lg">
             <h2 className="text-lg font-bold mb-4">Please Login</h2>
-            <p className="text-gray-600 mb-4">
-              You need to be logged in to place your order.
-            </p>
-            <button
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
-              onClick={handleLoginRedirect}
-            >
+            <p className="text-gray-600 mb-4">You need to be logged in to place your order.</p>
+            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200" onClick={handleLoginRedirect}>
               Login
             </button>
-            <button
-              className="ml-4 text-gray-600 hover:text-gray-800"
-              onClick={() => setShowModal(false)}
-            >
+            <button className="ml-4 text-gray-600 hover:text-gray-800" onClick={() => setShowModal(false)}>
               Cancel
             </button>
           </div>
@@ -127,16 +137,9 @@ function Cart() {
       {showOrderModal && (
         <div className="modal-overlay">
           <div className="modal-content bg-white p-6 rounded shadow-lg">
-            <h2 className="text-lg font-bold mb-4 text-green-600">
-              Your order has been placed!
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Thank you for shopping with us. Your order will be delivered soon.
-            </p>
-            <button
-              className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200"
-              onClick={() => setShowOrderModal(false)}
-            >
+            <h2 className="text-lg font-bold mb-4 text-green-600">Your order has been placed!</h2>
+            <p className="text-gray-600 mb-4">Thank you for shopping with us. Your order will be delivered soon.</p>
+            <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200" onClick={() => setShowOrderModal(false)}>
               OK
             </button>
           </div>

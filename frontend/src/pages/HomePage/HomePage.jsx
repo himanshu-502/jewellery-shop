@@ -5,11 +5,12 @@ import "../../styles/Style.css";
 import BlogCard from "../../components/BlogCard.jsx";
 import LocationCard from "../../components/LocationCard.jsx";
 import ProductCard from "../../components/ProductCard.jsx";
-import Slider from "../../components/CollectionSlider.jsx";
+import Slider from "../../components/CategoriesSlider.jsx";
 import { locations, blogs, limitedStocks, trendingProducts, limitedStockPeriod } from "../../data/DataSet.js";
 
 
 const HomePage = () => {
+
   const [timeLeft, setTimeLeft] = useState(limitedStockPeriod);
 
   // Effect to handle the countdown timer

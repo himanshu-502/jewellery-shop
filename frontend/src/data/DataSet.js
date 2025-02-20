@@ -214,65 +214,37 @@ export const reviews = [
 
 export const trendingProducts = [
   {
-    id: 32,
+    id: 1,
     name: "Ritika Lovely Diamond Earings",
     price: "28,429.00",
-    image: [trend3, trend4],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    images: [trend3, trend4],
+    description: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
   },
   {
-    id: 33,
-    image: [trend1, trend2],
+    id: 2,
+    images: [trend1, trend2],
     name: 'Adya Classic Gold Bracelet',
     price: 64240,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    description: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
   },
-  {
-    id: 34,
-    image: [trend2, trend3],
-    name: 'Shubhi Pleasing  Gold Earings',
-    price: 21635,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 35,
-    image: [trend4, trend1],
-    name: 'Brezza Red & White Diamond Earings',
-    price: 47663,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-
 ];
 
 export const limitedStocks = [
   {
-    id: 30,
+    id: 1,
     name: "Harshika Stunning Gold Necklace",
     price: "18,754.00",
-    image: [gold3],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    images: [gold3],
+    description: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
   },
   {
-    id: 32,
+    id: 2,
     name: "Ritika Lovely Diamond Necklace",
     price: "28,429.00",
-    image: [diamond3],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
+    images: [diamond3],
+    description: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
   },
-  {
-    id: 16,
-    name: "Harshika Stunning Silver Wedding Ring",
-    price: "18,754.00",
-    image: [silver1],
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
-  {
-    id: 35,
-    image: [trend1, trend3],
-    name: 'Brezza Red & White Diamond Earings',
-    price: 47663,
-    desc: "For a doubly charming accessory to aestheticize your Office Wear go for this Winsome Dual Heart Gold Bracelet crafted in 22 Karat Yellow Gold. With this bracelet, win over minds with your professional expertise and win over hearts with your elegant style",
-  },
+  
 ];
 
 export const products = [

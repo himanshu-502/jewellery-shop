@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import "../styles/CollectionSlider.css";
-import { collections } from "../data/DataSet";
+import "../styles/CategoriesSlider.css";
+import useProductStore from "../store/ProductStore";
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleItems = 4;
-  const maxIndex = collections.length - visibleItems;
+  const {categories, fetchCategories} = useProductStore();
+  const maxIndex = categories.length - visibleItems;
+
+  useEffect(() => {
+      const fetchData = async () => {
+        await fetchCategories();
+      };
+      fetchData();
+    }, []);
+  
 
   const handlePrev = () => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
@@ -30,12 +39,12 @@ const Slider = () => {
           </svg>
         </button>
         <div className="slider-container">
-          {collections.slice(currentIndex, currentIndex + visibleItems).map((item) => (
+          {categories.slice(currentIndex, currentIndex + visibleItems).map((item) => (
             <Link
-              to={`/collections/${item.label}`}
+              to={`/categories/${item.name}`}
               key={item.id} className="image-wrapper">
-              <img src={item.image} alt={item.label} className="hover:scale-110" />
-              <p>{item.label}</p>
+              <img src={item.imageBanner} alt={item.label} className="hover:scale-110" />
+              <p>{item.name}</p>
             </Link>
           ))}
         </div>

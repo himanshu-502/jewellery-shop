@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import '../styles/Recommend.css';
-import { products } from "../data/DataSet";
+import useProductStore from '../store/ProductStore';
 
-const Recommend = ({ productDisplay }) => {
-  const relatedProducts = products.filter(
-    (item) => item.id !== productDisplay.id
-  );
+const Recommend = ({ productId }) => {
+  const {products, fetchProducts} = useProductStore();
+    useEffect(() => {
+      const fetchData = async () => {
+        await fetchProducts();
+      };
+      if(products.length===0) fetchData();
+    }, []);
+  
+    // console.log('products',products);
+  const relatedProducts = products.length>0 ? products.filter(
+    (item) => item.id !== Number(productId)
+  ) : [];
+  // console.log(relatedProducts);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

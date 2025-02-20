@@ -16,7 +16,7 @@ function Wishlist() {
           {wishlist.map((item) => (
             <li key={item.id} className="cart-item">
               <Link to={`/menu/${item.id}`}>
-                <img src={item.image[0]} alt={item.name} className="cart-item-image" />
+                <img src={item.images[0]} alt={item.name} className="cart-item-image" />
               </Link>
               <div className="cart-item-details">
                 <Link to={`/menu/${item.id}`}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
@@ -10,23 +10,30 @@ import "../index.css"
 import { IoSearch } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import mob from "../assets/mobiledrop.webp"
-import { collections } from "../data/DataSet";
 import logo2 from "../assets/eagleview_jewelogo.png";
 import "../fonts/fonts.css";
 import { useCartWishlistStore } from "../store/CartWishlistStore";
-import { useUserProfileStore } from "../store/UserProfile";
+import useUserProfileStore from "../store/UserProfileStore";
+import useProductStore from "../store/ProductStore";
 
 const Header = () => {
-
-  const options = collections.map((item) => item.label.toLowerCase());
+  const {categories, fetchCategories } = useProductStore();
+  useEffect(() => {
+        const fetchData = async () => {
+          await fetchCategories();
+        };
+        fetchData();
+      }, []);
+    
+  const options = categories.map((item) => item.name.toLowerCase());
   let phrase = ""
   const navigate = useNavigate()
 
   const [search, setsearch] = useState("")
-  const { userProfile } = useUserProfileStore();
+  const { isSignedIn, name, email, phone } = useUserProfileStore();
 
   const handlechange = (e) => {
-    setsearch(e.target.value)
+    setsearch(e.target.value.toLowerCase())
   }
 
   const handleSearch = () => {
@@ -37,12 +44,12 @@ const Header = () => {
       }
     }
     if (search.trim().toLowerCase() !== "" && phrase.trim().toLowerCase() === search.trim().toLowerCase()) {
-      navigate(`/collections/${search.trim()}`);
+      navigate(`/categories/${search.trim()}`);
       setsearch("")
       phrase = ""
     }
     else if (phrase.trim().toLowerCase() !== "") {
-      navigate(`/collections/${phrase.trim()}`);
+      navigate(`/categories/${phrase.trim()}`);
       setsearch(""); phrase = ""
     }
     else {
@@ -67,12 +74,11 @@ const Header = () => {
   };
 
   const [isHovered, setIsHovered] = useState(false);
-  // const { cart } = useCartWishlist();
   const { cart } = useCartWishlistStore();
   const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleIconClick = () => {
-    if (!userProfile) {
+    if (!isSignedIn) {
       navigate("/signup");
     }
     else {
@@ -104,7 +110,7 @@ const Header = () => {
               <div className="hidden md:flex items-center border-gray-300 rounded-md overflow-hidden search1 ">
                 <input
                   type="text"
-                  placeholder="Search for Collections..."
+                  placeholder="Search for categories..."
                   className="px-2 py-1 focus:outline-none search "
                   value={search}
                   onChange={handlechange}
@@ -163,14 +169,14 @@ const Header = () => {
                     className={`absolute right-0 top-12 bg-white shadow-xl border border-gray-200 rounded-lg w-64 p-4 z-50 transition-transform duration-300 ease-in-out ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"
                       }`}
                   >
-                    {userProfile ? (
+                    {isSignedIn ? (
                       <>
                         <h3 className="text-lg font-bold text-gray-800 mb-2">User Info</h3>
                         <p className="text-sm text-gray-600">
-                          {userProfile.firstName} {userProfile.lastName}
+                          {name}
                         </p>
-                        <p className="text-sm text-gray-600">{userProfile.email}</p>
-                        <p className="text-sm text-gray-600">{userProfile.phone}</p>
+                        <p className="text-sm text-gray-600">{email}</p>
+                        <p className="text-sm text-gray-600">{phone}</p>
                       </>
                     ) : (
                       <p className="text-sm text-gray-600">
@@ -217,16 +223,16 @@ const Header = () => {
             </Link>
 
             <Link to="/gold" className="menu-item  px-2 py-1  hover:bg-red-300 rounded">
-              Gold Collections
+              Gold
             </Link>
             <Link to="/diamond" className="menu-item  px-2 py-1  hover:bg-red-300 rounded">
-              Diamond Collections
+              Diamond
             </Link>
             <Link to="/silver" className="menu-item  px-2 py-1  hover:bg-red-300 rounded">
-              Silver Collections
+              Silver 
             </Link>
             <Link to="/wedding" className=" menu-item px-2 py-1  hover:bg-red-300 rounded">
-              Wedding Wear Collections
+              Wedding Wear
             </Link>
 
             <Link to="/about" className="menu-item  px-2 py-1  hover:bg-red-300 rounded">

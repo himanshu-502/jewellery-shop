@@ -1,30 +1,25 @@
 import React from 'react'
 import { useState } from 'react';
-import { useUserProfileStore } from '../../store/UserProfile'
+import Loader from '../Loader';
+import useUserProfileStore from '../../store/UserProfileStore'
 import './AccountSettings.css'
 
 const ChangePassword = () => {
-    const { userProfile, setUserProfile } = useUserProfileStore();
+    const { error, loading, updatePassword } = useUserProfileStore(); 
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [error, setError] = useState('');
-
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (oldPassword !== userProfile.password) {
-            setError('Old password is incorrect');
-            return;
+        try{
+            await updatePassword(oldPassword, newPassword,)
         }
-        
-        setUserProfile({
-            ...userProfile,
-            password: newPassword
-        });
+        catch (error) {
+            console.error('Login error:', error);
+          }
         setOldPassword('');
         setNewPassword('');
-        setError('');
-        alert('Password updated successfully');
     };
 
     return (
@@ -54,7 +49,7 @@ const ChangePassword = () => {
                     {error && <p className='error'>{error}</p>}
                 </div>
 
-                <button className='mainbutton1'>Update Password</button>
+                <button type="submit" disabled={loading} className='mainbutton1'>{loading? (<Loader/>):("Update Password")}</button>
             </form>
         </div>
     );

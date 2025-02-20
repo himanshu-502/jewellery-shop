@@ -9,7 +9,7 @@ import {
 import AboutPage from "./pages/About/AboutPage.jsx"
 import BlogRead from "./pages/Blog/BlogRead.jsx";
 import Cart from "./pages/CartWishlist/Cart.jsx";
-import Collections from "./pages/Collections/Collections.jsx";
+import Categories from "./pages/Categories/Categories.jsx";
 import ContactPage from "./pages/About/ContactPage.jsx"
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import Layout from "./pages/HomePage/Layout.jsx";
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="contact" element={<ContactPage />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
-        <Route path="collections/:collectionName" element={<Collections />} />
+        <Route path="categories/:categoryName" element={<Categories />} />
         <Route path="menu/:productId" element={<ProductDesc />} />
         <Route path="cart" element={<Cart />} />
         <Route path="wishlist" element={<Wishlist />} />

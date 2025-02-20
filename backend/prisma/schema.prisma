@@ -19,7 +19,7 @@ model User {
   email         String    @unique
   passwordHash  String
   phone         String
-  role          String @default("buyer")   // {other values: admin}
+  role          String    @default("buyer") // {other values: admin, blocked}
   createdAt     DateTime  @default(now())
   address       String[]
   orders        Order[]
@@ -30,9 +30,9 @@ model User {
 model Category {
   id          Int      @id @default(autoincrement())
   name        String   @unique
-  imageBanner Bytes?
+  imageBanner String?
   createdAt   DateTime @default(now())
-  products    Product[]
+  products    ProductCategory[]
 }
 
 model Product {
@@ -41,13 +41,21 @@ model Product {
   description String?
   price       Decimal
   stock       Int
-  version     Int       @default(autoincrement())
   createdAt   DateTime  @default(now())
-  categories  Category[]
-  orderItem   OrderItem[]
+  categories  ProductCategory[]
+  orderItems  OrderItem[]
   wishlistItem Wishlist[]
-  images      Bytes[]
+  images      String[]
   reviews     Review[]
+}
+
+model ProductCategory {
+  product     Product   @relation(fields: [productId], references: [id])
+  productId   Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+
+  @@id([productId, categoryId]) // Composite key
 }
 
 model Order {
@@ -55,7 +63,8 @@ model Order {
   user      User      @relation(fields: [userId], references: [id])
   userId    Int
   total     Decimal
-  status    String   @default("In Cart")  // {other values: "delivered"}
+  address   String
+  status    String   @default("Pending") // {other values: "delivered", "inCart"}
   createdAt DateTime @default(now())
   items     OrderItem[]
 }
@@ -64,7 +73,8 @@ model OrderItem {
   id         Int     @id @default(autoincrement())
   order      Order   @relation(fields: [orderId], references: [id])
   orderId    Int
-  product    Product[]
+  product    Product @relation(fields: [productId], references: [id])
+  productId  Int
   quantity   Int
   price      Decimal
 }
@@ -86,5 +96,7 @@ model Wishlist {
   userId    Int
   product   Product  @relation(fields: [productId], references: [id])
   productId Int
-  createdAt DateTime @default(now())
+
+  @@unique([userId, productId]) // Ensures only one entry per user-product
 }
+

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { locations, aboutDesc, blogs } from "../data/DataSet";
 
-export const useProductStore = create((set) => ({
+export const useCompanyInfoStore = create((set) => ({
   locations: [],
   aboutDesc: [],
   blogs: [],
@@ -13,13 +13,9 @@ export const useProductStore = create((set) => ({
   //   function to fetch everything in one call
   fetchAllData: () => {
     set({
-      trendingProducts: trendingProducts,
-      limitedStocks: limitedStocks,
-      collections: collections,
-      products: products,
-      reviews: reviews,
-      assurances: assurances,
-      features: features,
+      locations: locations, 
+      aboutDesc: aboutDesc,
+      blogs: blogs,
     });
   },
 }));

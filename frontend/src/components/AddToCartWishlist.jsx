@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useCartWishlistStore } from "../store/CartWishlistStore";
-import { products } from "../data/DataSet.js";
+import useProductStore from "../store/ProductStore";
 import "../styles/Productcard.css";
 
 const CartWishlist = ({ productId }) => {
@@ -12,6 +12,14 @@ const CartWishlist = ({ productId }) => {
     removeFromCart, 
     removeFromWishlist 
   } = useCartWishlistStore();
+  const {products, fetchProducts} = useProductStore();
+    useEffect(() => {
+      const fetchData = async () => {
+        await fetchProducts();
+      };
+      fetchData();
+    }, []);
+  
   // const { cart, addToCart, addToWishlist, wishlist, removeFromCart, removeFromWishlist } = useCartWishlist();
   const productInCart = cart.find(item => item.id === Number(productId)) || false;
   const productInWishlist = wishlist.find(item => item.id === Number(productId)) || false;
