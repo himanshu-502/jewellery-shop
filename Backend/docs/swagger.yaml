@@ -1,0 +1,104 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: This is the API documentation for the jewelry e-commerce backend.
+  title: Jewelry E-Commerce API
+  version: "1.0"
+paths:
+  /reviews:
+    post:
+      consumes:
+      - application/json
+      description: Submit a review for a product
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Review added
+          schema:
+            type: string
+      summary: Add a review
+      tags:
+      - Review
+  /user/cart/{id}:
+    get:
+      description: Get all cart items for a user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User cart items
+          schema:
+            type: string
+      summary: Fetch user cart
+      tags:
+      - User
+  /user/profile/{id}:
+    get:
+      description: Get user profile details by ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User profile details
+          schema:
+            type: string
+        "400":
+          description: Invalid ID
+          schema:
+            type: string
+      summary: Fetch user profile
+      tags:
+      - User
+  /user/signup:
+    post:
+      consumes:
+      - application/json
+      description: Sign up a new user
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User created
+          schema:
+            type: string
+        "400":
+          description: Invalid request
+          schema:
+            type: string
+      summary: Create a new user
+      tags:
+      - User
+  /user/wishlist/{id}:
+    get:
+      description: Retrieve all wishlist items of a user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User wishlist items
+          schema:
+            type: string
+      summary: Get wishlist items
+      tags:
+      - Wishlist
+swagger: "2.0"
